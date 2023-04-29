@@ -35,7 +35,22 @@ const addRating = asyncHandler(async (req, res) => {
     }
 });
 
+
+const addComment = asyncHandler(async (req, res) => {
+    const { blogId, text } = req.body;
+    const userId = req.user._id;
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+        res.status(404).json({ message: 'Blog post not found' });
+    } else {
+        blog.comments.push({ user: userId, text });
+        await blog.save();
+        res.json(blog);
+    }
+});
+
 export default {
     createBlog,
     addRating,
+    addComment,
 }
