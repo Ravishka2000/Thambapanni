@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import BlogRoutes from "./routes/BlogRoutes.js";
+import UserRoutes from "./routes/UserRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/blogs", BlogRoutes);
+app.use("/api/auth", UserRoutes);
 
 mongoose.set("strictQuery", false);
 mongoose.connect(URI, PARAMS)
