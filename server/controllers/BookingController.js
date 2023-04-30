@@ -4,8 +4,10 @@ import Booking from "../models/BookingModel.js";
 import uniqid from "uniqid";
 
 const createBooking = asyncHandler(async (req, res, next) => {
+    const { _id } = req.user;
     const { name, email, phone, tourDate, tourLocation, groupSize, specialRequirements, guideId } = req.body;
   
+    console.log(req.user);
     // Find the guide(user) with the given ID
     const guide = await User.findById(guideId);
   
@@ -23,6 +25,16 @@ const createBooking = asyncHandler(async (req, res, next) => {
       tourLocation,
       groupSize,
       specialRequirements,
+      paymentIntent: {
+        id: uniqid(),
+        method: "PayPal",
+        amount: "5000",
+        status: "Pending",
+        created: Date.now(),
+        currency: "LKR",
+    },
+      status: "Pending",
+      Customer: _id,
       guide, // Store the guide's ID in the booking
     });
   
@@ -33,6 +45,14 @@ const createBooking = asyncHandler(async (req, res, next) => {
     res.status(201).json(savedBooking);
   });
 
+const getAllBookings = asyncHandler(async (req, res) => {
+    const bookings = await Booking.find();
+  
+    res.json(bookings);
+});
+
+
 export default {
     createBooking,
+    getAllBookings,
 }

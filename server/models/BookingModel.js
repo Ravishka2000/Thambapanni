@@ -28,6 +28,21 @@ const bookingSchema = new mongoose.Schema({
     specialRequirements: {
       type: String
     },
+    paymentIntent: {},
+    Status: {
+        type: String,
+        default: "Pending",
+        enum: [
+            "Pending",
+            "Accepted",
+            "Cancelled",
+            "Done",
+        ],
+    },
+    Customer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
     guide: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
