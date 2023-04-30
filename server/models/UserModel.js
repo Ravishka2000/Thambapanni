@@ -33,6 +33,15 @@ var userSchema = new mongoose.Schema({
     address: {
         type: String,
     },
+    photo: {
+        type:String,
+    },
+    bio: {
+        type:String,
+    },
+    charges: {
+        type:String,
+    },
     refreshToken: {
         type: String,
     },

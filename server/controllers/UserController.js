@@ -167,6 +167,57 @@ const loginAdmin = asyncHandler(async (req, res) => {
 
 });
 
+//login as guide
+const loginGuide = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.status(400);
+        throw new Error("Please enter email and password");
+    }
+
+    const guide = await User.findOne({ email });
+    if (guide.role !== 'guide') {
+        throw new Error("Not Authorized");
+    }
+
+    if (!guide) {
+        res.status(400);
+        throw new Error("User not found, Please SignUp");
+    }
+
+    const passwordIsCorrect = await bcrypt.compare(password, guide.password);
+
+    if (guide && passwordIsCorrect) {
+        const refreshToken = generateRefreshToken(guide?._id);
+        const { _id, firstName, email, mobile, role } = guide;
+        const updateUser = await User.findOneAndUpdate(
+            guide._id,
+            {
+                refreshToken: refreshToken
+            },
+            {
+                new: true
+            }
+        )
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 60 * 60 * 72 * 1000,
+        })
+        res.status(200).json({
+            _id,
+            firstName,
+            email,
+            mobile,
+            token: generateToken(guide._id),
+            role
+        })
+    } else {
+        res.status(400);
+        throw new Error("Invalid Email or Password");
+    }
+
+});
+
 //save address
 const saveAddress = asyncHandler(async (req, res) => {
     const { _id } = req.user;
@@ -218,6 +269,30 @@ const updateUser = asyncHandler(async (req, res) => {
             lastName,
             email,
             mobile
+        }, {
+            new: true
+        });
+        res.json(updatedUser);
+    } catch (error) {
+        throw new Error(error);
+    }
+});
+
+//update guide
+const updateGuide = asyncHandler(async (req, res) => {
+    //get id from req.params
+    const { _id } = req.user;
+    const { firstName, lastName, email, mobile, photo, bio, charges } = req.body;
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(_id, {
+            firstName,
+            lastName,
+            email,
+            mobile,
+            photo,
+            bio,
+            charges,
         }, {
             new: true
         });
@@ -326,6 +401,16 @@ const getAllUsers = asyncHandler(async (req, res) => {
     }
 });
 
+//get All Guides
+const getAllGuides = asyncHandler(async (req, res) => {
+    try {
+        const guides = await User.find({ role: 'guide' });
+        res.json(guides);
+    } catch (error) {
+        throw new Error(error);
+    }
+});
+
 //reset password
 const resetPassword = asyncHandler(async (req, res) => {
     //get new password from req.body
@@ -357,12 +442,15 @@ const verifyToken = asyncHandler(async (req, res) => {
 export default {
     createUser,
     updateUser,
+    updateGuide,
     forgotPasswordToken,
     updatePassword,
     resetPassword,
     loginUser,
     loginAdmin,
+    loginGuide,
     getAllUsers,
+    getAllGuides,
     handleRefreshToken,
     logout,
     getUser,
