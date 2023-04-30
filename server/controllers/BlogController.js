@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
 import Blog from "../models/BlogModel.js";
-import uniqid from "uniqid";
 
 const createBlog = asyncHandler(async (req, res) => {
     const { title, description, category, location } = req.body;
@@ -68,9 +67,22 @@ const editComment = asyncHandler (async (req, res) => {
     }
 });
 
+
+const deleteComment = asyncHandler (async (req, res) => {
+    const { blogId, id } = req.body;
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+        $pull: { comments: { _id: id }}
+    }, {
+        new: true,
+    });
+    
+    res.status(200).json({updatedBlog: blog});
+});
+
 export default {
     createBlog,
     addRating,
     addComment,
     editComment,
+    deleteComment,
 }
