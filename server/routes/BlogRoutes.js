@@ -8,5 +8,6 @@ router.post('/create', AuthMiddlewares.authMiddleware, BlogControllers.createBlo
 router.post('/rate', AuthMiddlewares.authMiddleware, BlogControllers.addRating);
 router.post('/comment', AuthMiddlewares.authMiddleware, BlogControllers.addComment);
 router.patch('/edit-comment', AuthMiddlewares.authMiddleware, BlogControllers.editComment);
+router.delete('/delete-comment', AuthMiddlewares.authMiddleware, BlogControllers.deleteComment);
 
 export default router;
