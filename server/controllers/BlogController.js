@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
 import Blog from "../models/BlogModel.js";
+import uniqid from "uniqid";
 
 const createBlog = asyncHandler(async (req, res) => {
     const { title, description, category, location } = req.body;
@@ -49,8 +50,27 @@ const addComment = asyncHandler(async (req, res) => {
     }
 });
 
+
+const editComment = asyncHandler (async (req, res) => {
+    const { blogId, text, id } = req.body;
+    const userId =  req.user._id;
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+        res.status(404).json({ message: 'Blog post not found' });
+    }else{
+        const existingComment = blog.comments.find(comment => comment._id.toString() === id.toString() && comment.user.toString() === userId.toString());
+        if (existingComment) {
+            existingComment.text = text;
+            existingComment.date = Date.now();
+            await blog.save();
+            res.json(blog);
+        }
+    }
+});
+
 export default {
     createBlog,
     addRating,
     addComment,
+    editComment,
 }

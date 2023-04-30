@@ -40,6 +40,10 @@ const blogSchema = new Schema({
         }
     }],
     comments: [{
+        id: {
+            type: String,
+            unique: true,
+        },
         user: {
             type: Schema.Types.ObjectId,
             ref: 'User'
