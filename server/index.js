@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import BlogRoutes from "./routes/BlogRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
+import HeritageRoutes from "./routes/HeritageRoutes.js"
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(cors());
 
 app.use("/api/blogs", BlogRoutes);
 app.use("/api/auth", UserRoutes);
+app.use("/api/heritages",HeritageRoutes)
 
 mongoose.set("strictQuery", false);
 mongoose.connect(URI, PARAMS)
