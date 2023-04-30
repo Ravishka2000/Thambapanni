@@ -12,11 +12,13 @@ router.post('/login', UserControllers.loginUser);
 router.post('/admin-login', UserControllers.loginAdmin);
 router.post('/guide-login', UserControllers.loginGuide);
 router.get('/all-users', UserControllers.getAllUsers);
+router.get('/all-guides', UserControllers.getAllGuides);
 router.get('/refresh', UserControllers.handleRefreshToken);
 router.get('/logout', UserControllers.logout);
 router.get('/:id', UserControllers.getUser);
 router.delete('/:id', UserControllers.deleteUser);
 router.put('/update-user', AuthMiddlewares.authMiddleware, UserControllers.updateUser);
+router.put('/update-guide', AuthMiddlewares.authMiddleware, UserControllers.updateGuide);
 router.put('/save-address', AuthMiddlewares.authMiddleware, UserControllers.saveAddress);
 
 export default router;

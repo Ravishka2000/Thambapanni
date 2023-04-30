@@ -167,7 +167,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
 
 });
 
-//login as admin
+//login as guide
 const loginGuide = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -278,6 +278,30 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 });
 
+//update guide
+const updateGuide = asyncHandler(async (req, res) => {
+    //get id from req.params
+    const { _id } = req.user;
+    const { firstName, lastName, email, mobile, photo, bio, charges } = req.body;
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(_id, {
+            firstName,
+            lastName,
+            email,
+            mobile,
+            photo,
+            bio,
+            charges,
+        }, {
+            new: true
+        });
+        res.json(updatedUser);
+    } catch (error) {
+        throw new Error(error);
+    }
+});
+
 //handle refresh 
 const handleRefreshToken = asyncHandler(async (req, res) => {
     const cookie = req.cookies;
@@ -377,6 +401,16 @@ const getAllUsers = asyncHandler(async (req, res) => {
     }
 });
 
+//get All Guides
+const getAllGuides = asyncHandler(async (req, res) => {
+    try {
+        const guides = await User.find({ role: 'guide' });
+        res.json(guides);
+    } catch (error) {
+        throw new Error(error);
+    }
+});
+
 //reset password
 const resetPassword = asyncHandler(async (req, res) => {
     //get new password from req.body
@@ -408,6 +442,7 @@ const verifyToken = asyncHandler(async (req, res) => {
 export default {
     createUser,
     updateUser,
+    updateGuide,
     forgotPasswordToken,
     updatePassword,
     resetPassword,
@@ -415,6 +450,7 @@ export default {
     loginAdmin,
     loginGuide,
     getAllUsers,
+    getAllGuides,
     handleRefreshToken,
     logout,
     getUser,
