@@ -40,9 +40,8 @@ const Header = () => {
                         <Typography component={Link} to="/" sx={{textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginLeft: 'auto' }}>Login</Typography><Typography component={Link} to="/" sx={{textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginRight: '20px' }}>Register</Typography>
                     </Toolbar>
                 </AppBar>
-                <canvas id='upper-half' style={{ clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0% 100%)', width: "100%", height: "50vh" }} />
+                
             </Grid>
-                <img src='https://res.cloudinary.com/ducirgwnz/image/upload/v1682865153/mask_kijwmb.png' height={500} width={500} style/>
 
         </Grid>
     );
