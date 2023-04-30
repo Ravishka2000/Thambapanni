@@ -167,6 +167,57 @@ const loginAdmin = asyncHandler(async (req, res) => {
 
 });
 
+//login as admin
+const loginGuide = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.status(400);
+        throw new Error("Please enter email and password");
+    }
+
+    const guide = await User.findOne({ email });
+    if (guide.role !== 'guide') {
+        throw new Error("Not Authorized");
+    }
+
+    if (!guide) {
+        res.status(400);
+        throw new Error("User not found, Please SignUp");
+    }
+
+    const passwordIsCorrect = await bcrypt.compare(password, guide.password);
+
+    if (guide && passwordIsCorrect) {
+        const refreshToken = generateRefreshToken(guide?._id);
+        const { _id, firstName, email, mobile, role } = guide;
+        const updateUser = await User.findOneAndUpdate(
+            guide._id,
+            {
+                refreshToken: refreshToken
+            },
+            {
+                new: true
+            }
+        )
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 60 * 60 * 72 * 1000,
+        })
+        res.status(200).json({
+            _id,
+            firstName,
+            email,
+            mobile,
+            token: generateToken(guide._id),
+            role
+        })
+    } else {
+        res.status(400);
+        throw new Error("Invalid Email or Password");
+    }
+
+});
+
 //save address
 const saveAddress = asyncHandler(async (req, res) => {
     const { _id } = req.user;
@@ -362,6 +413,7 @@ export default {
     resetPassword,
     loginUser,
     loginAdmin,
+    loginGuide,
     getAllUsers,
     handleRefreshToken,
     logout,
