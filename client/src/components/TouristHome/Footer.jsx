@@ -1,5 +1,5 @@
-import { Box, Grid, IconButton, Typography } from '@mui/material'
 import React from 'react';
+import { Box, Grid, IconButton, Typography } from '@mui/material'
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import SubscriptionsRoundedIcon from '@mui/icons-material/SubscriptionsRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
@@ -10,7 +10,7 @@ const Footer = () => {
             <Grid xs={12} sm={2} ml={{ xs: 0, sm: 23 }} textAlign={{ xs: 'center', sm: 'left' }}>
                 <Typography fontWeight={900} fontSize={20} fontFamily={'serif'} mt={2}>Thambapanni</Typography>
                 <Typography fontWeight={300} fontSize={18} fontFamily={'serif'} mt={2} color={'#536287'} maxWidth={400}>An Online Web Application for Promote Cultural Heritages</Typography>
-                <Box display={'flex'} flexDirection={'row'} ml={{ xs: '2', sm: -1.2 }} justifyContent={{ xs: 'center', sm: 'left'}}>
+                <Box display={'flex'} flexDirection={'row'} ml={{ xs: '2', sm: -1.2 }} justifyContent={{ xs: 'center', sm: 'left' }}>
                     <IconButton>
                         <FacebookRoundedIcon color='info' />
                     </IconButton>
