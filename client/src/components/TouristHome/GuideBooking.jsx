@@ -4,11 +4,20 @@ import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, FormControlLabel,
+  Switch,
+  Card,
+  CardContent, Container } from '@mui/material';
+import { DatePicker } from '@mui/lab';
 
 const GuideBooking = () => {
   const guideId = useParams().id;
   const [guide, setGuide] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:7070/api/auth/${guideId}`)
@@ -24,7 +33,7 @@ const GuideBooking = () => {
       <Grid container spacing={2} marginTop={10}>
         {guide && (
           <>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={12} sm={6}>
               <img
                 src={guide.photo}
                 alt={guide.firstname}
@@ -57,11 +66,164 @@ const GuideBooking = () => {
                     </Typography>
                 </section>
             </Grid>
-            <Grid item xs={12} sm={7} style={{ backgroundColor: '#ffff' }}>
-            <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D' }}>
-            Book a guide
-          </Typography>
-              
+            <Grid item xs={12} sm={6} style={{ backgroundColor: '#ffff' }}>
+            
+            <Card style={{ backgroundColor: "#F1F6F9"  }} justifyContent="center">
+                    <CardContent>
+                    <Container maxWidth="sm" style={{marginTop: '20px', marginBottom: '20px'}}>
+                        <form >
+                            <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D' }}>
+                              <center>Book Now</center>
+                            </Typography>
+                            <Grid container spacing={2}>
+                            <Grid container item spacing={2} xs={12}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Name"
+                                            
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Email"
+                                            
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid container item spacing={2} xs={12}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Phone"
+                                            
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Tour Date"
+                                            
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid container item spacing={2} xs={12}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Destination"
+                                            
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Group Size"
+                                            
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        name="requirements"
+                                        label="Special Requirements"
+                                        margin="normal"
+                                       
+                                    />
+                                </Grid>
+                                {/* <Grid item xs={12}>
+                                    <FormControlLabel
+                                        control={
+                                            <Switch
+                                                checked={isDhlDelivery}
+                                                onChange={(event) =>
+                                                    setIsDhlDelivery(event.target.checked)
+                                                }
+                                                name="dhlDeliverySwitch"
+                                                color="primary"
+                                            />
+                                        }
+                                        label="DHL Delivery"
+                                    />
+                                </Grid> */}
+                                {/* {isDhlDelivery && (
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Shipping address"
+                                            value={shippingAddress}
+                                            onChange={(event) =>
+                                                setShippingAddress(event.target.value)
+                                            }
+                                        />
+                                    </Grid>
+                                )} */}
+                          
+                            <Typography style={{ fontStyle:'italic', textAlign:'center', marginBottom: '16px', color: '#19376D', display:'flex'}}>
+                              <center>You have to pay an advance of 4 USD to book a guide.</center>
+                            </Typography>
+
+                            
+                                {/* <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Name on card"
+                                        
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Card number"
+                                        
+                                    />
+                                </Grid>
+                                <Grid container item spacing={2} xs={12}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Expiry date"
+                                            
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="CVV"
+                                            
+                                        />
+                                    </Grid>
+                                </Grid> */}
+
+                                <Grid item xs={12}>
+                                    <Button
+                                        type="submit"
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                    >
+                                        Pay now
+                                    </Button>
+                                </Grid>
+                            </Grid>
+
+                        </form>
+                        </Container>
+                    </CardContent>
+                </Card>
             </Grid>
           </>
         )}
