@@ -37,7 +37,18 @@ const isAdmin = asyncHandler (async (req, res, next) => {
     }
 });
 
+const isGuide = asyncHandler (async (req, res, next) => {
+    const { email } = req.user;
+    const guideUser = await User.findOne({ email });
+    if(guideUser.role !== "guide"){
+        throw new Error("You are not a Guide");
+    }else{
+        next();
+    }
+});
+
 export default {
     authMiddleware,
     isAdmin,
+    isGuide,
 };
