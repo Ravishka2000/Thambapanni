@@ -5,6 +5,7 @@ import Header from './components/TouristHome/Header'
 import Footer from './components/TouristHome/Footer'
 import LandingPage from './components/TouristHome/LandingPage'
 import ViewGuides from './components/TouristHome/ViewGuides'
+import GuideBooking from './components/TouristHome/GuideBooking';
 import { useAuthContext } from './hooks/useAuthContext';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -24,6 +25,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
+                    <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> :<Navigate to="/login"></Navigate>}/>
                     <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
                     <Route path="/reset-password" element={!user ? <ForgetPassword /> :<Navigate to="/"></Navigate>}/>
