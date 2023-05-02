@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react';
-import { AppBar, Box, Grid, IconButton, Menu, Drawer, Toolbar, Typography, Divider } from '@mui/material';
+import { AppBar, Box, Grid, IconButton, Menu, Drawer, Toolbar, Typography, Divider, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import { useLogout } from '../../hooks/useLogout';
 
 const Header = () => {
 
     const { user } = useAuthContext()
+    const { logout } = useLogout();
+
     const [open, setOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setOpen(!open);
     };
+
+    const handleLogoutClick = () => {
+        logout()
+    }
 
     return (
         <Grid container>
@@ -25,13 +32,21 @@ const Header = () => {
                             <Typography component={Link} to="/blogs" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'white', pl: '30px' }}>About Us</Typography>
                             <Typography component={Link} to="/blogs" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'white', pl: '30px' }}>Contact Us</Typography>
                         </Box>
-                        <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>Login</Typography>
-                        <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginRight: '20px', display: { xs: 'none', md: 'block' } }}>Register</Typography>
+                        {user ? (
+                            <>
+                                <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>{user.firstName}</Typography>
+                                <Button onClick={handleLogoutClick} component={Link} to="/" sx={{ textDecoration: 'none', textTransform: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginRight: '20px', display: { xs: 'none', md: 'block' } }}>Logout</Button>
+                            </>
+                        ) : (
+                            <>
+                                <Typography component={Link} to="/login" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>Login</Typography>
+                                <Typography component={Link} to="/signup" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'white', pl: '20px', marginRight: '20px', display: { xs: 'none', md: 'block' } }}>Register</Typography>
+                            </>
+                        )}
                         <Box sx={{ marginLeft: 'auto', display: { xs: 'block', md: 'none' } }}>
                             <IconButton onClick={handleDrawerToggle}>
                                 <MenuIcon sx={{ color: 'white', fontSize: '35px' }} />
                             </IconButton>
-
                         </Box>
                     </Toolbar>
                 </AppBar>
@@ -39,15 +54,24 @@ const Header = () => {
                     <Drawer anchor="top" open={open} onClose={handleDrawerToggle} variant="temporary" sx={{ width: '100%' }}>
                         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#FFFEF7', padding: '20px' }}>
                             <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '28px', fontWeight: '900', color: 'black' }}>THAMBAPANNI</Typography>
-                            <Divider/>
+                            <Divider />
                             <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Home</Typography>
                             <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Blogs</Typography>
                             <Typography component={Link} to="/guides" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Guides</Typography>
                             <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>About Us</Typography>
                             <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', my: '20px' }}>Contact Us</Typography>
-                            <Divider/>
-                            <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Login</Typography>
-                            <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Register</Typography>
+                            <Divider />
+                            {user ? (
+                                <>
+                                    <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>{user.firstName}</Typography>
+                                    <Button onClick={handleLogoutClick} component={Link} to="/" sx={{ textDecoration: 'none', textTransform: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px', ml: '0' }}>Logout</Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Typography component={Link} to="/login" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Login</Typography>
+                                    <Typography component={Link} to="/signup" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Register</Typography>
+                                </>
+                            )}
                         </Box>
                     </Drawer>
                 </Box>
