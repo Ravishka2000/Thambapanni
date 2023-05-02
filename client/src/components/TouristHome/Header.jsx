@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { AppBar, Box, Grid, IconButton, Menu, Drawer, Toolbar, Typography, Divider, Button } from '@mui/material';
+import { AppBar, Box, Grid, IconButton, Drawer, Toolbar, Typography, Divider, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useLogout } from '../../hooks/useLogout';
-import { styled } from '@mui/material/styles';
 
 const Header = () => {
 
@@ -43,9 +42,6 @@ const Header = () => {
             setIsScrolled(false);
         }
     }, [scrollPosition]);
-
-
-
 
     return (
         <Grid container mt={0}>
