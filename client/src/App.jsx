@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import ForgetPassword from "./pages/ForgetPassowrd";
 import ResetPassword from "./pages/ResetPassword";
+import ViewHeritages from './components/Heritages/ViewHeritages';
 
 function App() {
   const { user } = useAuthContext()
@@ -24,6 +25,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
+                    <Route path="/heritages" element={<ViewHeritages />} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> :<Navigate to="/login"></Navigate>}/>
                     <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
                     <Route path="/reset-password" element={!user ? <ForgetPassword /> :<Navigate to="/"></Navigate>}/>
