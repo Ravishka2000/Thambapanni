@@ -433,6 +433,8 @@ const resetPassword = asyncHandler(async (req, res) => {
     res.json(user);
 });
 
+
+
 //verify token 
 const verifyToken = asyncHandler(async (req, res) => {
     res.status(200).json({ user: req.user });
