@@ -4,6 +4,7 @@ import './App.css'
 import Header from './components/TouristHome/Header'
 import Footer from './components/TouristHome/Footer'
 import LandingPage from './components/TouristHome/LandingPage'
+import ViewGuides from './components/TouristHome/ViewGuides'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <main style={{ marginBottom: "50px" }}>
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
+                    <Route path="/guides" element={<ViewGuides />} exact></Route>
                 </Routes>
             </main>
 
