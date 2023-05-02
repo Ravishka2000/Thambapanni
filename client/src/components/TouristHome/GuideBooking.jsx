@@ -5,19 +5,15 @@ import { useParams } from 'react-router-dom';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import { TextField, Button, FormControlLabel,
-  Switch,
   Card,
   CardContent, Container } from '@mui/material';
 import { DatePicker } from '@mui/lab';
+import { PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 
 const GuideBooking = () => {
   const guideId = useParams().id;
   const [guide, setGuide] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   useEffect(() => {
     fetch(`http://localhost:7070/api/auth/${guideId}`)
@@ -38,7 +34,7 @@ const GuideBooking = () => {
                 src={guide.photo}
                 alt={guide.firstname}
                 style={{ 
-                width: '230px',
+                width: '270px',
                 height: '270px',
                 display: 'block',
                 margin: '0 auto',
@@ -207,19 +203,33 @@ const GuideBooking = () => {
                                         />
                                     </Grid>
                                 </Grid> */}
-
-                                <Grid item xs={12}>
-                                    <Button
-                                        type="submit"
-                                        fullWidth
-                                        variant="contained"
-                                        color="primary"
-                                    >
-                                        Pay now
-                                    </Button>
-                                </Grid>
+                              <Grid item xs={12}>
+                                <PayPalScriptProvider 
+                                  options={{
+                                    "client-id": "AQI8VgpVImEHGWZ51f74S2WmYm4xHLXP3COG9kdkDwXXuN3UuoYP6sx1AocPTGzYHiVOYQ4YlvbauFiA"
+                                  }}
+                                >
+                                  <PayPalButtons
+                                    createOrder={(data, actions) => {
+                                      return actions.order.create({
+                                        purchase_units: [
+                                          {
+                                            amount: {
+                                              value: "4.00",
+                                            },
+                                          },
+                                        ],
+                                      });
+                                    }}
+                                    onApprove={async (data, actions) => {
+                                      const details = await actions.order.capture();
+                                      const name = details.payer.name.given_name;
+                                      alert("Booking completed by " + name);
+                                    }}
+                                  />
+                                </PayPalScriptProvider>
+                                </Grid>                         
                             </Grid>
-
                         </form>
                         </Container>
                     </CardContent>
