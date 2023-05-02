@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { AppBar, Box, Grid, IconButton, Menu, Drawer, Toolbar, Typography, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Header = () => {
 
+    const { user } = useAuthContext()
     const [open, setOpen] = useState(false);
 
     const handleDrawerToggle = () => {
