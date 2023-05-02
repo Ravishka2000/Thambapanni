@@ -10,7 +10,10 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import ForgetPassword from "./pages/ForgetPassowrd";
 import ResetPassword from "./pages/ResetPassword";
-
+import CreateHeritage from './components/Heritages/AddHeritages';
+import DisplayAHeritage from './components/Heritages/DisplayAHeritage';
+import ManageHeritages from './components/AdminComponents/ManageHeritages';
+import EditHeritage from './components/AdminComponents/EditHeritage';
 function App() {
   const { user } = useAuthContext()
 
@@ -28,6 +31,11 @@ function App() {
                     <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
                     <Route path="/reset-password" element={!user ? <ForgetPassword /> :<Navigate to="/"></Navigate>}/>
                     <Route path="/api/user/reset-password/:token" element={<ResetPassword />} exact></Route>
+                    <Route path="/api/createHeritages" element={<CreateHeritage />} exact></Route> 
+                    <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
+                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
+                    <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
+
                 </Routes>
             </main>
 
