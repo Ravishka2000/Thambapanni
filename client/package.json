@@ -13,14 +13,17 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.3",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@mui/lab": "^5.0.0-alpha.128",
-    "@mui/material": "^5.12.2",
     "@paypal/react-paypal-js": "^7.8.3",
     "axios": "^1.4.0",
     "granim": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.11.0"
+    "react-quill": "^2.0.0",
+    "react-router-dom": "^6.11.0",
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -6,9 +6,6 @@ import path from 'path';
 
 //file path 
 const storage = multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,"./uploads/");
-    },
     filename:function(req,file,cb){
         cb(null,Date.now()+path.extname(file.originalname));
     }
@@ -16,10 +13,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage});
 
-router.post("/",HeritageController.createHeritage)
+router.post("/",upload.single("image"),HeritageController.createHeritage)
 router.get('/',HeritageController.getAllHeritages)
 router.get('/:id',HeritageController.getHeritage)
-router.patch('/:id',HeritageController.updateHeritage)
+router.patch('/:id',upload.single("image"),HeritageController.updateHeritage)
 router.delete('/:id',HeritageController.deleteHeritage)
 router.put('/:id/image',upload.single("image"),HeritageController.uploadImages)
 

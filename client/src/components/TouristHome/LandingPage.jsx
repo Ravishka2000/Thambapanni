@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Granim from 'granim';
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import DisplayHeritages from '../Heritages/DisplayHeritages';
 
 const LandingPage = () => {
 
@@ -50,7 +51,7 @@ const LandingPage = () => {
             <Grid container bgcolor={'#fafafa'} mt={{ xs: 80, sm: 50 }} py={5}>
                 <Grid xs={12} sm={12} mx={{ xs: 0, sm: 23 }} textAlign={{ xs: 'center', sm: 'left' }}>
                     <Typography fontWeight={800} fontFamily={'serif'} fontSize={{ xs: '1.5rem', sm: '2.8rem' }}>View Heritages of Sri Lanka</Typography>
-                    <Box display={'flex'} flexDirection={{ xs: 'column', sm: 'row' }} justifyContent={'space-between'} mt={3} alignItems={{ xs: 'center', sm: 'flex-start' }}>
+                    {/* <Box display={'flex'} flexDirection={{ xs: 'column', sm: 'row' }} justifyContent={'space-between'} mt={3} alignItems={{ xs: 'center', sm: 'flex-start' }}>
 
                         <Card sx={{ maxWidth: 345, maxHeight: 500, mb: 5 }}>
                             <CardActionArea>
@@ -94,7 +95,9 @@ const LandingPage = () => {
                             </CardActionArea>
                         </Card>
 
-                    </Box>
+                    </Box> */}
+
+                    <DisplayHeritages/>
                 </Grid>
 
             </Grid>
