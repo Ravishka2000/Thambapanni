@@ -13,13 +13,13 @@ cloudinary.config({
 });
 
 //get a heritage
-const getHeritage = async(req,res)=>{
-    const {id} = req.params
+const getHeritage = async (req, res) => {
+    const { id } = req.params
 
     const heritage = await Heritage.findById(id)
 
-    if(!heritage){
-        res.status(400).json({error: ' No such heritage'})
+    if (!heritage) {
+        res.status(400).json({ error: ' No such heritage' })
     }
 
     res.status(200).json(heritage)
@@ -38,15 +38,15 @@ const createHeritage = asyncHandler(async (req, res) => {
     try{
         const heritage = await Heritage.create({title,description,location,image})
         res.status(200).json(heritage)
-    }catch(error){
-        res.status(400).json({error:error.message})
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 });
 
 //get all heritges
-const getAllHeritages = asyncHandler(async (req,res)=>{
+const getAllHeritages = asyncHandler(async (req, res) => {
 
-    const heritages = await Heritage.find({}).sort({createdAt:-1})
+    const heritages = await Heritage.find({}).sort({ createdAt: -1 })
 
     res.status(200).json(heritages)
 })
@@ -93,21 +93,22 @@ const updateHeritage = async(req, res) => {
     res.status(200).json({ heritage: updatedHeritage });
   };
 
+
 //delete heritage 
-const deleteHeritage = async(req,res)=>{
-    const {id} = req.params
+const deleteHeritage = async (req, res) => {
+    const { id } = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error:"No such heritage"})
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: "No such heritage" })
     }
 
-    const heritage = await Heritage.findByIdAndDelete({_id:id})
+    const heritage = await Heritage.findByIdAndDelete({ _id: id })
 
-    if(!heritage){
-        return res.status(404).json({error:"No such heritage"})
+    if (!heritage) {
+        return res.status(404).json({ error: "No such heritage" })
     }
 
-    res.status(200).json({heritage})
+    res.status(200).json({ heritage })
 }
 
 //upload images
@@ -142,6 +143,7 @@ const uploadImages = async (req, res) => {
       res.status(200).json(heritage);
     } catch (err) {
         return res.status(400).json({ error: err.message });
+
     }
 };
 
