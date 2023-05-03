@@ -14,6 +14,7 @@ const EditHeritage=()=>{
     const[location,setLocation]= useState("")
     const[error,setError]=useState("")
     const[image,setImage] = useState("")
+    const [imageUrl, setImageUrl] = useState('');
 
     useEffect(()=>{
         axios.get("http://localhost:7070/api/heritages/"+id)
@@ -22,6 +23,7 @@ const EditHeritage=()=>{
             setLocation(response.data.location)
             setImage(response.data.image)
             setDescription(response.data.description)
+            setImageUrl(response.data.image)
         }).catch(error=>{
             console.log(error)
         })
@@ -33,20 +35,23 @@ const EditHeritage=()=>{
 
     const handleImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
-            setImage(URL.createObjectURL(event.target.files[0]));
+          const file = event.target.files[0];
+          setImage(file);
+          setImageUrl(URL.createObjectURL(file));
         }
     };
     
 
     const handleSubmit= async (e) =>{
         e.preventDefault()
-        const data = {
-            title,
-            description,
-            location,
-            image
-        }
-        axios.patch("http://localhost:7070/api/heritages/"+id,data,{
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('location', location);
+        formData.append('image', image);
+        console.log(formData.get('image'))
+
+        axios.patch("http://localhost:7070/api/heritages/"+id,formData,{
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -132,11 +137,15 @@ const EditHeritage=()=>{
                         </label>
 
                         <input type="file" name="image" 
-                            onChange={(e)=> handleImageChange(e)} 
+                            onChange={handleImageChange} 
                             style={{ width: '100%',color:'black' }}
                         />
-                        
-                        {image && <img src={image} style={{ width: '50%', height: '500px', objectFit: 'cover', padding:" 1rem 0" }} />}
+                        {imageUrl && (
+                        <img
+                        src={imageUrl}
+                        alt="Uploaded image"
+                        style={{ width: '50%', height: 'auto' }}
+                        />)}
                     </Grid>
 
                    
