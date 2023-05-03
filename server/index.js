@@ -5,8 +5,9 @@ import dotenv from "dotenv";
 
 import BlogRoutes from "./routes/BlogRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
-import HeritageRoutes from "./routes/HeritageRoutes.js"
-import BookingRoutes from "./routes/BookingRoutes.js"
+import HeritageRoutes from "./routes/HeritageRoutes.js";
+import BookingRoutes from "./routes/BookingRoutes.js";
+import EventRoutes from "./routes/EventRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use("/api/blogs", BlogRoutes);
 app.use("/api/auth", UserRoutes);
 app.use("/api/heritages",HeritageRoutes)
 app.use("/api/booking", BookingRoutes);
+app.use("/api/events", EventRoutes);
 
 mongoose.set("strictQuery", false);
 mongoose.connect(URI, PARAMS)
