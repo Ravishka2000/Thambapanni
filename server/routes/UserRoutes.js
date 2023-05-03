@@ -1,6 +1,18 @@
 import express from "express";
 import UserControllers from "../controllers/UserController.js";
 import AuthMiddlewares from "../middlewares/authMiddleware.js";
+import multer from "multer";
+import User from "../models/UserModel.js"
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "./client/public/uploads");
+    },
+    flename: (req, file, callback) => {
+        callback(null, file.originalname);
+    }
+})
+const upload = multer({storage: storage});
 
 const router = express.Router();
 
