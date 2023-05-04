@@ -144,8 +144,8 @@ const GuideBooking = () => {
                                         <TextField
                                             required
                                             fullWidth
-                                            label="Date"
                                             value={tourDate}
+                                            type='date'
                                             onChange={(e) => setTourDate(e.target.value)}
                                         />
                                     </Grid>

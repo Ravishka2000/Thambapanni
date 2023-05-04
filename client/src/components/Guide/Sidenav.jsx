@@ -115,7 +115,10 @@ export default function Sidenav() {
           aria-label="open drawer"
           onClick={() => {setOpen(!open)}}
           edge="start"
-          
+          sx={{
+            marginRight: 5,
+            ...(open && { display: 'Profile' }),
+          }}
         >
           <MenuIcon />
         </IconButton>
