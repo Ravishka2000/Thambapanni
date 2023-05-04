@@ -43,7 +43,7 @@ function App() {
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
-                    <Route path="/api/guide-dashboard" element={user ? <Dashboard /> :<Navigate to="/"></Navigate>} exact></Route>
+                    <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
 
                 </Routes>
             </main>

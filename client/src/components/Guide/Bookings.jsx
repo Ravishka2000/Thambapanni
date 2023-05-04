@@ -1,14 +1,13 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 
-const Profile = () => {
+const Bookings = () => {
   return (
     <>
       <Box height={100}/>
-        <div>Profile</div>   
-        <Box height={500}/> 
+        <div>Bookings</div>   
     </>
   )
 }
 
-export default Profile
+export default Bookings
