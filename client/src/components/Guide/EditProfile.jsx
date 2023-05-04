@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import axios from 'axios';
 import Alert from "@mui/material/Alert"
 import { set } from 'mongoose';
+import { Card, CardContent, Container } from '@mui/material';
 
 const EditProfile = ({ onEditToggle }) => {
 
@@ -86,7 +87,10 @@ const EditProfile = ({ onEditToggle }) => {
     return (
 
         <div>
-            <Box height={100}/>
+            <Box height={30}/>
+            <Card style={{ backgroundColor: "#F1F6F9"  }} justifyContent="center">
+                    <CardContent>
+                    <Container maxWidth="sm" style={{marginTop: '20px', marginBottom: '20px'}}>
             <Box
                 component="form"
                 sx={{
@@ -110,9 +114,9 @@ const EditProfile = ({ onEditToggle }) => {
                             style={{ padding: "2" }}
                         >
                             <Box
-                                textAlign="center">
+                                textAlign="center" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D', padding: '3', }}>
                                 <h1>
-                                    Edit Details
+                                    Edit Profile
                                 </h1>
                             </Box>
                         </Grid>
@@ -208,6 +212,9 @@ const EditProfile = ({ onEditToggle }) => {
                 </Grid>
                 {error && <Alert variant="filled" severity="error" style={{ fontWeight: "bold", color: "#063970" }}>{error}</Alert>}
             </Box>
+            </Container>
+            </CardContent>
+            </Card>
         </div>
     )
 }
