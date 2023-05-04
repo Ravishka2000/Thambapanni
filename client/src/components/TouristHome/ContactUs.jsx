@@ -9,19 +9,19 @@ const ContactUs = () => {
                 <Typography fontSize={'3.5rem'} fontWeight={900}>Speak to an expert</Typography>
                 <Typography mt={5}>Our team can help you:</Typography>
                 <Box display={'flex'} mt={2}>
-                    <CheckCircleTwoToneIcon color='primary' fontSize='small'/>
+                    <CheckCircleTwoToneIcon color='primary' fontSize='small' />
                     <Typography ml={1} fontSize={15} color={'#435366'}>Getting Started in Thambapanni</Typography>
                 </Box>
                 <Box display={'flex'} mt={2}>
-                    <CheckCircleTwoToneIcon color='primary' fontSize='small'/>
+                    <CheckCircleTwoToneIcon color='primary' fontSize='small' />
                     <Typography ml={1} fontSize={15} color={'#435366'}>Contact our agent</Typography>
                 </Box>
                 <Box display={'flex'} mt={2}>
-                    <CheckCircleTwoToneIcon color='primary' fontSize='small'/>
+                    <CheckCircleTwoToneIcon color='primary' fontSize='small' />
                     <Typography ml={1} fontSize={15} color={'#435366'}>Selecting a Guide</Typography>
                 </Box>
                 <Box display={'flex'} mt={2}>
-                    <CheckCircleTwoToneIcon color='primary' fontSize='small'/>
+                    <CheckCircleTwoToneIcon color='primary' fontSize='small' />
                     <Typography ml={1} fontSize={15} color={'#435366'}>Payment issues</Typography>
                 </Box>
             </Grid>
