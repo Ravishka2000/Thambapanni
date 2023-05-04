@@ -18,7 +18,7 @@ import ManageHeritages from './components/AdminComponents/ManageHeritages';
 import EditHeritage from './components/AdminComponents/EditHeritage';
 import ViewHeritages from './components/Heritages/ViewHeritages';
 import ViewEvents from './components/Events/ViewEvents';
-
+import Editguide from './components/Guide/EditProfile'
 function App() {
   const { user } = useAuthContext()
 
@@ -44,7 +44,7 @@ function App() {
                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
-
+                    <Route path="/editguide" element={<Editguide/>} exact></Route>
                 </Routes>
             </main>
 
