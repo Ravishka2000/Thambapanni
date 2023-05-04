@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState,useEffect } from "react"
 import { Box,Grid,Typography,Table,TableCell,TableBody,TableContainer,TableHead,TableRow,Paper,Button } from "@mui/material"
-
+import { Link } from "react-router-dom"
 
 const ManageHeritages=()=>{
     
@@ -62,10 +62,11 @@ const ManageHeritages=()=>{
                                         <Button variant="contained" type="submit" onClick={() => handleDelete(u._id)} sx={{ color: 'black', backgroundColor: "transparent", width: '5ch', marginBottom: 2, fontWeight: "bold",boxShadow:"none" ,'&:hover': {
                                             backgroundColor: 'transparent',boxShadow:"none" 
                                         },}}>Delete</Button>
-                                         <Link to ={"/api/editHeritages/"+u._id}></Link>
+                                         <Link to ={"/api/editHeritages/"+u._id}>
                                          <Button variant="contained" type="submit" sx={{ color: 'white', backgroundColor: "#063970", borderColor: 'green', width: '15ch', fontWeight: "bold" }}>
                                            Edit
                                         </Button> 
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}

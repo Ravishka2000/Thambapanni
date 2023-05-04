@@ -17,7 +17,7 @@ const heritageSchema = new Schema({
     image: {
         type:String
     },
-});
+},{ timestamps: true });
 
 const Heritage = mongoose.model('Heritage', heritageSchema);
 

@@ -22,11 +22,11 @@ const DisplayAHeritage = ()=>{
           <Box py={10}>
             <Box textAlign="center" mb={5}>
               <Container maxWidth="sm">
-                {/* <Chip color="primary" label={heritage.createdAt} /> */}
                 <Box my={4}>
                   <Typography variant="h3" component="h2">
                     <Typography variant="h3" component="span" color=" #313639" sx={{textTransform:"capitalize"}}>{heritage.title} </Typography>
                   </Typography>
+                  {/* <Typography  component="span" color=" #313639" sx={{fontSize:"15px",fontStyle:"italic"}}>{heritage.location} </Typography> */}
                 </Box>
               </Container>
             </Box>
