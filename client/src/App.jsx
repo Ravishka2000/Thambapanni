@@ -17,6 +17,7 @@ import ManageHeritages from './components/AdminComponents/ManageHeritages';
 import EditHeritage from './components/AdminComponents/EditHeritage';
 import ViewHeritages from './components/Heritages/ViewHeritages';
 import ViewEvents from './components/Events/ViewEvents';
+import AdminDashboard from './components/AdminComponents/AdminDashboard';
 
 function App() {
   const { user } = useAuthContext()
@@ -42,6 +43,7 @@ function App() {
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
+                    <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
 
                 </Routes>
             </main>

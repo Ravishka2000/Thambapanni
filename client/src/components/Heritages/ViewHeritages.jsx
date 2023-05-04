@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardMedia, Box, Grid, Typography } from '@mui/material';
+import { Card, CardMedia, Box, Grid, Typography,InputAdornment,TextField } from '@mui/material';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 
 const ViewHeritages = () => {
     const [heritages, setHeritages] = useState([]);
+    const[original,setOriginal] = useState([])
+    const[search,setSearch] = useState("")
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get("http://localhost:7070/api/heritages/");
                 setHeritages(response.data);
+                setOriginal(response.data)
             } catch (error) {
                 console.error(error);
             }
@@ -18,8 +23,40 @@ const ViewHeritages = () => {
         fetchData();
     }, []);
 
+    const handleSearch=(event)=>{
+        setSearch(event.target.value)
+        const searchWord = event.target.value
+       
+
+        if(searchWord===""){
+            setHeritages(original)
+        }
+        else{
+            const newFilter = heritages.filter((heritage)=>{
+                return heritage.title.toLowerCase().includes(searchWord.toLowerCase())
+            })
+            setHeritages(newFilter) 
+        }
+        
+        
+    }
+
     return (
-        <Grid container mt={10} bgcolor={'#fafafa'}>
+        <div style={{backgroundColor:"#FAF9F6"}}>
+        <Box display="flex" flexDirection="column" alignItems="left" sx={{paddingTop:"80px"}} bgcolor={'#fafafa'}>
+        <TextField 
+                onChange={handleSearch}
+                value={search}
+                sx={{ width: 600, margin: " 20px auto"}}
+                InputProps={{
+                endAdornment: (
+                    <InputAdornment position="end">
+                    <SearchIcon />
+                    </InputAdornment>
+                ),
+                }}
+        />
+        <Grid container mt={10}>
             <Grid item xs={12} md={12}>
                 {heritages &&
                     heritages.map((heritage) => (
@@ -65,6 +102,8 @@ const ViewHeritages = () => {
                     ))}
             </Grid>
         </Grid>
+        </Box>
+        </div>
     )
 }
 

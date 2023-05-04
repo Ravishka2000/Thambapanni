@@ -15,14 +15,16 @@ const DisplayAHeritage = ()=>{
             console.log(error)
         })
     },[])
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return(
         <div style={{backgroundColor:"#FAF9F6"}}>
-            <section>
+        <section>
         <Container maxWidth="md">
-          <Box py={10}>
+          <Box py={10}> 
             <Box textAlign="center" mb={5}>
               <Container maxWidth="sm">
                 <Box my={4}>
+                  <Typography  component="span" color=" #313639" sx={{fontSize:"12px"}}>{new Date(heritage.createdAt).toLocaleDateString('en-US', options)} </Typography> 
                   <Typography variant="h3" component="h2">
                     <Typography variant="h3" component="span" color=" #313639" sx={{textTransform:"capitalize"}}>{heritage.title} </Typography>
                   </Typography>
