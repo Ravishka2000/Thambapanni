@@ -60,8 +60,8 @@ const Header = () => {
                             <Typography component={Link} to="/blogs" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>Blogs</Typography>
                             <Typography component={Link} to="/events" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>Events</Typography>
                             <Typography component={Link} to="/guides" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>Guides</Typography>
-                            <Typography component={Link} to="/blogs" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>About Us</Typography>
-                            <Typography component={Link} to="/blogs" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>Contact Us</Typography>
+                            <Typography component={Link} to="/about" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>About Us</Typography>
+                            <Typography component={Link} to="/contact" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '600', color: 'black', pl: '30px' }}>Contact Us</Typography>
                         </Box>
                         {user ? (
                             <>
@@ -91,8 +91,8 @@ const Header = () => {
                             <Typography component={Link} to="/blogs" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Blogs</Typography>
                             <Typography component={Link} to="/events" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Events</Typography>
                             <Typography component={Link} to="/guides" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Guides</Typography>
-                            <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>About Us</Typography>
-                            <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', my: '20px' }}>Contact Us</Typography>
+                            <Typography component={Link} to="/about" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>About Us</Typography>
+                            <Typography component={Link} to="/contact" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', my: '20px' }}>Contact Us</Typography>
                             <Divider />
                             {user ? (
                                 <>
