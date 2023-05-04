@@ -16,6 +16,7 @@ import DisplayAHeritage from './components/Heritages/DisplayAHeritage';
 import ManageHeritages from './components/AdminComponents/ManageHeritages';
 import EditHeritage from './components/AdminComponents/EditHeritage';
 import ViewHeritages from './components/Heritages/ViewHeritages';
+import ViewEvents from './components/Events/ViewEvents';
 
 function App() {
   const { user } = useAuthContext()
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
                     <Route path="/heritages" element={<ViewHeritages />} exact></Route>
+                    <Route path="/events" element={<ViewEvents />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> :<Navigate to="/login"></Navigate>}/>
                     <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
