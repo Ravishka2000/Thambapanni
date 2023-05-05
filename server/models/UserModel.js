@@ -55,6 +55,12 @@ var userSchema = new mongoose.Schema({
     passwordResetExpires: {
         type: Date,
     },
+    blogs: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: "Post",
+        },
+    ],
 
 }, {
     timestamps: true,
