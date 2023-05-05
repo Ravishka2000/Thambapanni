@@ -22,9 +22,11 @@ import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
+import UserDashboard from './components/UserProfile/UserDashboard';
 
 function App() {
   const { user } = useAuthContext()
+  const isAdmin = user && user.role === 'admin';
 
     return (
         <React.Fragment>
@@ -45,13 +47,13 @@ function App() {
                     <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
                     <Route path="/reset-password" element={!user ? <ForgetPassword /> :<Navigate to="/"></Navigate>}/>
                     <Route path="/api/user/reset-password/:token" element={<ResetPassword />} exact></Route>
-                    <Route path="/api/createHeritages" element={<CreateHeritage />} exact></Route> 
+                    <Route path="/api/createHeritages" element={isAdmin ? <CreateHeritage />:<Navigate to="/"/>} exact></Route> 
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
-                    <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
-                    <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
-                    <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
+                    <Route path="/api/editHeritages/:id" element={isAdmin ? <EditHeritage />:<Navigate to="/"/>} exact></Route>
+                    <Route path="/api/admin-dashboard" element={isAdmin ? <AdminDashboard />:<Navigate to="/"/>} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
                     <Route path="/editguide" element={<Editguide/>} exact></Route>
+                    <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
                 </Routes>
             </main>
 

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { FormControl, Grid } from '@mui/material';
+import { FormControl, Grid, Typography } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -22,17 +22,38 @@ const Login = () => {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleSubmit = async (e) => {
-        console.log(error)
+        
         e.preventDefault()
         await login(email, password)
+        console.log(error)
+
     }
     return (
-        <div className="container">
+
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent:"space-around",
+             height: '50%',
+            padding:"150px 20px",backgroundColor:"#FAF9F6",
+            
+            
+          }} >
+            <Grid item sx={{ display: { xs: 'none', md: 'block' }, alignItems: 'center', justifyContent: 'center', height: 650}} xs={6} md={6}>  
+                <img src="https://res.cloudinary.com/daxiby67v/image/upload/v1683265442/aerial-view-of-sigiriya-rock-at-misty-morning--sri-lanka--drone-photo--1129567907-a6628ce7d636462f9a0e0361a3808178_az4rbv.jpg" alt="Example Image" style={{ width: '100%', height: '100%', objectFit: 'cover',borderRadius:"2rem 0 0 2rem" }} />  
+            </Grid>
+
+
+            <Grid item xs={6} md={6} sx={{height: 650}}>
+            <Typography sx={{fontWeight:"bold",textAlign:"left",padding:"0.5rem",color:"#566573"}} variant="h6">
+                    THAMBAPANNI
+            </Typography>
             <Box
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    flexDirection: { xs: "column", sm: "row" }
+                    flexDirection: { xs: "column", sm: "row" },
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',height: 600,
                 }}
                 noValidate
                 autoComplete="off"
@@ -40,27 +61,23 @@ const Login = () => {
             >
                 <Grid
                     container
-                    spacing={0}
+                    spacing={2}
                     direction="column"
                     alignItems="center"
-                    justifyContent="center"
-                    justify="space-around"
-                    style={{ minHeight: '100vh' }}>
+                    justifyContent="space-between">
                     <div>
-                        <Grid item xs={200}
-                            style={{ padding: "2" }}
+                        <Grid item xs={12}
+                        sx={{width:"100%"}}
                         >
                             <Box
-                                textAlign="center">
-                                <h1>
-                                    Welcome Back 👋🏼
-                                </h1>
-
-
+                                >
+                                <Typography sx={{fontWeight:"bold",fontSize:"15px",textAlign:"center",padding:"2rem 0"}} >
+                                    Sign in
+                                </Typography>
+                                
                             </Box>
                         </Grid>
-                        <Grid item xs={200}
-                            style={{ padding: "10" }}>
+                        <Grid item xs={12}>
                             <TextField
                                 id="outlined-multiline-flexible"
                                 label="Email"
@@ -68,11 +85,11 @@ const Login = () => {
                                 maxRows={4}
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
-                                style={{ width: '35ch' }}
+                                style={{ width: '45ch' }}
                             />
                         </Grid>
-                        <Grid item xs={20}>
-                            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                        <Grid item xs={12}>
+                            <FormControl sx={{ m: 1, width: '45ch' }} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
@@ -97,21 +114,35 @@ const Login = () => {
 
                             </FormControl>
                         </Grid>
-                    </div>
-                    <Grid item xs={20}>
+                        <Grid item xs={12}>
+                        <p className="text" style={{ color: "#239B56",textAlign:"right",width:"45ch" }}><Typography><Link to="/reset-password" style={{ textDecoration:"none", color: "#239B56",fontSize:"15px" }}>Forgot Passowrd?</Link></Typography></p>
+                        </Grid>
+                        <Grid item xs={12}>
                         <Button variant="contained" disabled={isLoading} type="submit"
-                            sx={{ color: 'white', backgroundColor: "#063970", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold" }}
-                        >Login</Button>
+                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
+                        >Sign In</Button>
+
+                        <Grid item sx={12}
+                        textAlign={"center"}>
+                        <Typography><p className="text" style={{ color: "#239B56" }}>Don't have an account? <span><Link to="/signup" style={{ textDecoration:"none", color: "black",fontWeight:"bold" }}>Sign Up!</Link></span></p></Typography>
+                        </Grid>
                     </Grid>
+                    </div>
+                    
 
-                    <p className="text" style={{ color: "#063970" }}>New User? <span><Link to="/signup" style={{ fontWeight: "bold", color: "#063970" }}>Signup</Link></span></p>
-                    <p className="text" style={{ color: "#063970" }}><span><Link to="/reset-password" style={{ fontWeight: "bold", color: "#063970" }}>Forgot Passowrd?</Link></span></p>
+                    
+                    
 
-                    {error && <Alert variant="filled" severity="error" style={{ fontWeight: "bold" }}>{error}</Alert>}
+                    {error && <Alert variant="outlined" severity="error" >{error}</Alert>}
 
                 </Grid>
             </Box>
-        </div>
+                
+
+            </Grid>
+        </Grid>
+     
+   
     )
 
 }

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { FormControl, Grid } from '@mui/material';
+import { FormControl, Grid,Typography } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -35,7 +35,26 @@ const Signup = () => {
 
     return (
 
-        <div className="container">
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent:"space-around",
+             height: '50%',
+            padding:"150px 20px",backgroundColor:"white",
+            
+            
+          }} >
+            <Grid item sx={{ display: { xs: 'none', md: 'block' }, alignItems: 'center', justifyContent: 'center', height: 650}} xs={6} md={6}>  
+                <img src="https://www.triptipedia.com/tip/img/MY5ZwP4OK.jpg" alt="Example Image" style={{ width: '100%', height: '100%', objectFit: 'cover',borderRadius:"2rem 0 0 2rem" }} />  
+            </Grid>
+
+        <Grid item xs={6} md={6} sx={{height: 650}}>
+            <Typography sx={{fontWeight:"bold",textAlign:"left",padding:"0.5rem",color:"#566573"}} variant="h6">
+                    THAMBAPANNI
+            </Typography>
+
+
+       
             <Box
                 component="form"
                 sx={{
@@ -54,16 +73,17 @@ const Signup = () => {
                     justifyContent="center"
                     justify="space-around"
                     placeItems='center'
-                    style={{ minHeight: '100vh' }}>
-                    <div>
-                        <Grid item xs={200}
-                            style={{ padding: "2" }}
+                    >
+                    <div style={{padding:"20px"}}>
+                    <Grid item xs={12}
+                        sx={{width:"100%"}}
                         >
                             <Box
-                                textAlign="center">
-                                <h1>
-                                    Create an account
-                                </h1>
+                                >
+                                <Typography sx={{fontWeight:"bold",fontSize:"15px",textAlign:"center",padding:"0.5rem 0"}} >
+                                    Sign up
+                                </Typography>
+                                
                             </Box>
                         </Grid>
 
@@ -76,7 +96,7 @@ const Signup = () => {
                                 maxRows={4}
                                 onChange={(e) => setfirstName(e.target.value)}
                                 value={firstName}
-                                style={{ width: '35ch' }}
+                                style={{ width: '45ch' }}
                             />
                         </Grid>
 
@@ -89,7 +109,7 @@ const Signup = () => {
                                 maxRows={4}
                                 onChange={(e) => setlastName(e.target.value)}
                                 value={lastName}
-                                style={{ width: '35ch' }}
+                                style={{ width: '45ch' }}
                             />
                         </Grid>
 
@@ -102,7 +122,7 @@ const Signup = () => {
                                 maxRows={4}
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
-                                style={{ width: '35ch' }}
+                                style={{ width: '45ch' }}
                             />
                         </Grid>
 
@@ -115,14 +135,14 @@ const Signup = () => {
                                 maxRows={4}
                                 onChange={(e) => setMobile(e.target.value)}
                                 value={mobile}
-                                style={{ width: '35ch' }}
+                                style={{ width: '45ch' }}
                             />
                         </Grid>
 
 
 
                         <Grid item xs={20}>
-                            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                            <FormControl sx={{ m: 1, width: '45ch' }} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-password"
@@ -145,19 +165,26 @@ const Signup = () => {
                             </FormControl>
                         </Grid>
 
+                        
+                        <Grid item xs={12}>
+                        <Button variant="contained" disabled={isLoading} type="submit"
+                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
+                        >Sign Up</Button>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                        <Typography sx={{textAlign:"center"}}><p className="text" style={{ color: "#239B56" }}>Already have an account? <span><Link to="/login" style={{ textDecoration:"none", color: "black",fontWeight:"bold" }}>Sign In!</Link></span></p></Typography>
+                        </Grid>
                     </div>
 
-                    <Grid item xs={20}
-                        style={{ padding: "10" }}>
-                        <Button variant="contained" disabled={isLoading} type="submit"
-                            sx={{ color: 'white', backgroundColor: "#063970", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold" }}
-                        >Signup</Button>
-                    </Grid>
-                    <p className="text" style={{ color: "#063970" }}>Already have an account? <span><Link to="/login" style={{ fontWeight: "bold", color: "#063970" }}>Sign in</Link></span></p>
-                    {error && <Alert variant="filled" severity="error" style={{ fontWeight: "bold", color: "#063970" }}>{error}</Alert>}
+                    
+                   
+                    {error && <Alert variant="outlined" severity="error">{error}</Alert>}
                 </Grid>
             </Box>
-        </div>
+        </Grid>
+
+        </Grid>
     )
 
 }

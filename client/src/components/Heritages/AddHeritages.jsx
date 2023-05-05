@@ -4,7 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import {Grid,TextField,Button,Alert,Container,Typography,IconButton} from "@mui/material"
 import Box from '@mui/system/Box';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import axios from "axios"
@@ -12,7 +12,7 @@ import axios from "axios"
 
 const CreateHeritage=()=>{
 
-  
+    const { user } = useAuthContext()
     const[title,setTitle] = useState("")
     const[description,setDescription] = useState("")
     const[location,setLocation]= useState("")
@@ -46,7 +46,8 @@ const CreateHeritage=()=>{
       
         axios.post('http://localhost:7070/api/heritages/', formData, {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Authorization': `Bearer ${user.token}`,
+            'Content-Type': 'multipart/form-data',
           }
         })
           .then(response => {
