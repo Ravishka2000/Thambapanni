@@ -16,7 +16,18 @@ const createEvent = asyncHandler (async (req, res) => {
     }
 });
 
+const deleteEvent = asyncHandler (async (req, res) => {
+    const { id } = req.params;
+    try {
+        const event = await Event.findByIdAndDelete(id);
+        res.json(event);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 export default {
     getAllEvents,
     createEvent,
+    deleteEvent,
 }

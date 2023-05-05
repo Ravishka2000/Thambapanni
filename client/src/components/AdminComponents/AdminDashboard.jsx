@@ -16,6 +16,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import GroupIcon from '@mui/icons-material/Group';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import ManageEvents from '../Events/ManageEvents';
 
 
 const AdminDashboard=()=>{
@@ -119,7 +120,7 @@ const AdminDashboard=()=>{
                   {activeLink === 'link1' && <Dashboard />}
                   {activeLink === 'link2' && <Users />}
                   {activeLink === 'link3' && <ManageHeritages />}
-                  {/* {activeLink === 'link4' && <UsersChart/>}   */}
+                  {activeLink === 'link4' && <ManageEvents/>}  
                   </Item>
                 </Grid>
               </Grid>

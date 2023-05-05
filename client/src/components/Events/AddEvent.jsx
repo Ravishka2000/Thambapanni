@@ -3,52 +3,40 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Grid, TextField, Button, Alert, Container, Typography, IconButton } from "@mui/material"
 import Box from '@mui/system/Box';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import axios from "axios"
 
 
 const CreateHeritage = () => {
 
 
-    const [title, setTitle] = useState("")
+    const [name, setName] = useState("");
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
+    const [date, setDate] = useState("")
+    const [organizer, setOrganizer] = useState("")
     const [error, setError] = useState("")
-    const [image, setImage] = useState("")
-    const [imageUrl, setImageUrl] = useState('');
     const [success, setSuccess] = useState('');
 
     const handleChange = (value) => {
         setDescription(value);
     };
 
-    const handleImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            const file = event.target.files[0];
-            setImage(file);
-            setImageUrl(URL.createObjectURL(file));
-        }
-    };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(image)
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('location', location);
-        formData.append('image', image);
-        console.log(formData.get('image'))
 
-        axios.post('http://localhost:7070/api/heritages/', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+        const eventData = {
+            name,
+            description,
+            location,
+            date,
+            organizer
+        }
+
+        axios.post('http://localhost:7070/api/events/', eventData)
             .then(response => {
                 console.log(response.data);
-                setSuccess('Heritage is created successfully')
+                setSuccess('Event is created successfully')
             })
             .catch(error => {
                 setError(error.response.data.error);
@@ -84,7 +72,7 @@ const CreateHeritage = () => {
                                 <div>
                                     <Grid item xs={12}
                                         style={{ padding: "1rem 0" }}>
-                                        <Typography variant="h4" component="span" color=" #313639" sx={{ textTransform: "capitalize" }}>Add New Heritage </Typography>
+                                        <Typography variant="h4" component="span" color=" #313639" sx={{ textTransform: "capitalize" }}>Add New Event </Typography>
                                     </Grid>
                                     <Container>
                                         <Box my={4}>
@@ -92,8 +80,8 @@ const CreateHeritage = () => {
                                                 <TextField
                                                     focused
                                                     variant="outlined"
-                                                    onChange={(e) => setTitle(e.target.value)}
-                                                    value={title}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    value={name}
                                                     InputProps={{
                                                         style: {
                                                             color: '#313639',
@@ -106,39 +94,12 @@ const CreateHeritage = () => {
                                                         wrap: 'soft'
                                                     }}
                                                     multiline
-                                                    helperText="Enter the title of your article"
+                                                    helperText="Enter the Name of your Event"
                                                     style={{ margin: "0" }}
                                                 />
                                             </Grid>
                                         </Box>
                                     </Container>
-
-                                    <Grid item xs={12}
-                                        style={{ padding: "0 1.5rem " }}
-                                    >
-                                        <Box>
-                                            <Box my={4} sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                                                <input type="file" name="image"
-                                                    onChange={handleImageChange}
-                                                    style={{ display: 'none' }}
-                                                    id="image"
-
-                                                />
-                                                <label htmlFor="image">
-                                                    <IconButton component="span" style={{ display: 'flex', justifyContent: 'flex-start', backgroundColor: "none", '&:hover': { background: 'white' }, width: "2.5rem" }} >
-                                                        <CloudUploadIcon />
-                                                    </IconButton>
-                                                    <Typography style={{ textAlign: "left", color: " #313639", fontSize: "12px", padding: "5px" }}>Upload your image</Typography>
-                                                </label>
-                                                {imageUrl && (
-                                                    <img
-                                                        src={imageUrl}
-                                                        alt="Uploaded image"
-                                                        style={{ maxWidth: "100%" }}
-                                                    />)}
-                                            </Box>
-                                        </Box>
-                                    </Grid>
 
                                     <Container>
                                         <Box my={4}>
@@ -159,6 +120,55 @@ const CreateHeritage = () => {
                                                     }}
                                                     multiline
                                                     helperText="Enter the location of your destination"
+                                                    style={{ margin: "0" }}
+                                                />
+                                            </Grid>
+                                        </Box>
+                                    </Container>
+                                    <Container>
+                                        <Box my={4}>
+                                            <Grid item xs={12}
+                                            >
+                                                <TextField
+                                                    focused
+                                                    variant="outlined"
+                                                    onChange={(e) => setDate(e.target.value)}
+                                                    value={date}
+                                                    InputProps={{
+                                                        style: {
+                                                            color: '#313639',
+                                                            fontSize: '1.25rem',
+                                                            outline: 'none',
+                                                        },
+
+                                                    }}
+                                                    multiline
+                                                    helperText="Enter the Date"
+                                                    style={{ margin: "0" }}
+                                                />
+                                            </Grid>
+                                        </Box>
+                                    </Container>
+
+                                    <Container>
+                                        <Box my={4}>
+                                            <Grid item xs={12}
+                                            >
+                                                <TextField
+                                                    focused
+                                                    variant="outlined"
+                                                    onChange={(e) => setOrganizer(e.target.value)}
+                                                    value={organizer}
+                                                    InputProps={{
+                                                        style: {
+                                                            color: '#313639',
+                                                            fontSize: '1.25rem',
+                                                            outline: 'none',
+                                                        },
+
+                                                    }}
+                                                    multiline
+                                                    helperText="Enter the Organizer"
                                                     style={{ margin: "0" }}
                                                 />
                                             </Grid>

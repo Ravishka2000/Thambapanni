@@ -22,6 +22,9 @@ import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
+import Profile from './components/Guide/Profile';
+import AddEvent from './components/Events/AddEvent';
+
 
 function App() {
   const { user } = useAuthContext()
@@ -36,8 +39,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
+                    <Route path="/guide-profile" element={<Profile />} exact></Route>
                     <Route path="/heritages" element={<ViewHeritages />} exact></Route>
                     <Route path="/events" element={<ViewEvents />} exact></Route>
+                    <Route path="/create-events" element={<AddEvent />} exact></Route>
                     <Route path="/about" element={<AboutUs />} exact></Route>
                     <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
