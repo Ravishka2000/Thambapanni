@@ -19,21 +19,26 @@ import EditHeritage from './components/AdminComponents/EditHeritage';
 import ViewHeritages from './components/Heritages/ViewHeritages';
 import ViewEvents from './components/Events/ViewEvents';
 import Editguide from './components/Guide/EditProfile'
+import AboutUs from './components/TouristHome/AboutUs';
+import ContactUs from './components/TouristHome/ContactUs';
+
 function App() {
   const { user } = useAuthContext()
 
     return (
         <React.Fragment>
-            <Header>
+            <Header >
                 <Header />
             </Header>
 
-            <main style={{ marginBottom: "50px" }}>
+            <main style={{ marginBottom: "50px", background: "#f6f9fc" }}>
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
                     <Route path="/heritages" element={<ViewHeritages />} exact></Route>
                     <Route path="/events" element={<ViewEvents />} exact></Route>
+                    <Route path="/about" element={<AboutUs />} exact></Route>
+                    <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> :<Navigate to="/login"></Navigate>}/>
                     <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
@@ -45,6 +50,7 @@ function App() {
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
                     <Route path="/editguide" element={<Editguide/>} exact></Route>
+
                 </Routes>
             </main>
 
