@@ -22,6 +22,10 @@ import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
+import BlogDashboard from './components/Blogs/BlogDashboard';
+import UserBlogs from './components/Blogs/UserBlogs';
+import CreateBlog from './components/Blogs/CreateBlog';
+import BlogDetails from './components/Blogs/BlogDetails';
 
 function App() {
   const { user } = useAuthContext()
@@ -52,6 +56,10 @@ function App() {
                     <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
                     <Route path="/editguide" element={<Editguide/>} exact></Route>
+                    <Route path="/blogs" element={<BlogDashboard />} exact></Route>
+                    <Route path="/my-blog" element={<UserBlogs />} exact></Route>
+                    <Route path="/create-blog" element={<CreateBlog />} exact></Route>
+                    <Route path="/blog-details/:id" element={<BlogDetails />} exact></Route>
                 </Routes>
             </main>
 

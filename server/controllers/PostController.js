@@ -48,7 +48,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const getAllPosts = asyncHandler(async (req, res) => {
     try {
-      const blogs = await Post.find({})
+      const blogs = await Post.find({}).populate("user");
       if (!blogs) {
         return res.status(200).send({
           success: false,
