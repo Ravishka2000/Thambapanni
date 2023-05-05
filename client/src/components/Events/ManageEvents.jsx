@@ -98,7 +98,7 @@ const ManageEvents = () => {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" align="left">
-                                        <Link to={`/api/event/${u._id}`} style={{ textDecoration: "none", color: "black" }}>
+                                        <Link to={`/event/${u._id}`} style={{ textDecoration: "none", color: "black" }}>
                                             {u.name}
                                         </Link>
                                     </TableCell>
@@ -108,7 +108,7 @@ const ManageEvents = () => {
                                                 backgroundColor: 'transparent', boxShadow: "none"
                                             }, color: "#E74C3C"
                                         }}><DeleteIcon /></IconButton>
-                                        <Link to={"/api/editevents/" + u._id}>
+                                        <Link to={"/edit-event/" + u._id}>
                                             <IconButton variant="contained" type="submit" sx={{
                                                 color: 'black', backgroundColor: "transparent", width: '5ch', marginBottom: 2, fontWeight: "bold", boxShadow: "none", '&:hover': {
                                                     backgroundColor: 'transparent', boxShadow: "none"
