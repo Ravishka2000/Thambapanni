@@ -9,6 +9,7 @@ import GuideBooking from './components/TouristHome/GuideBooking';
 import { useAuthContext } from './hooks/useAuthContext';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Dashboard from "./components/Guide/Dashboard";
 import ForgetPassword from "./pages/ForgetPassowrd";
 import ResetPassword from "./pages/ResetPassword";
 import CreateHeritage from './components/Heritages/AddHeritages';
@@ -17,6 +18,7 @@ import ManageHeritages from './components/AdminComponents/ManageHeritages';
 import EditHeritage from './components/AdminComponents/EditHeritage';
 import ViewHeritages from './components/Heritages/ViewHeritages';
 import ViewEvents from './components/Events/ViewEvents';
+import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
 
@@ -46,6 +48,9 @@ function App() {
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
+                    <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
+                    <Route path="/editguide" element={<Editguide/>} exact></Route>
+
                 </Routes>
             </main>
 

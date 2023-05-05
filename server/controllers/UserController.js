@@ -282,7 +282,7 @@ const updateUser = asyncHandler(async (req, res) => {
 const updateGuide = asyncHandler(async (req, res) => {
     //get id from req.params
     const { _id } = req.user;
-    const { firstName, lastName, email, mobile, photo, bio, charges } = req.body;
+    const { firstName, lastName, email, mobile, address, photo, bio, charges } = req.body;
 
     try {
         const updatedUser = await User.findByIdAndUpdate(_id, {
@@ -290,6 +290,7 @@ const updateGuide = asyncHandler(async (req, res) => {
             lastName,
             email,
             mobile,
+            address,
             photo,
             bio,
             charges,
