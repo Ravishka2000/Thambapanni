@@ -7,13 +7,20 @@ import EmailIcon from '@mui/icons-material/Email';
 import { TextField, Button, FormControlLabel,
   Card,
   CardContent, Container } from '@mui/material';
-import { DatePicker } from '@mui/lab';
 import { PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const GuideBooking = () => {
   const guideId = useParams().id;
   const [guide, setGuide] = useState(null);
-
+  const { user } = useAuthContext();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [tourDate, setTourDate] = useState("");
+  const [tourLocation, setTourLocation] = useState("");
+  const [groupSize, setGroupSize] = useState("");
+  const [specialRequirements, setSpecialRequirements] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:7070/api/auth/${guideId}`)
@@ -23,6 +30,37 @@ const GuideBooking = () => {
       })
       .catch((err) => console.log(err));
   }, [guideId]);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Submit the form data with the values
+      const response = await fetch("http://localhost:7070/api/booking/Add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          tourDate,
+          tourLocation,
+          groupSize,
+          specialRequirements,
+          guideId
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log("Booking added successfully", data);
+    } catch (error) {
+      console.error("Error adding booking", error);
+    }
+  };
 
   return (
     <section style={{ margin: '32px 0' }}>
@@ -78,7 +116,8 @@ const GuideBooking = () => {
                                             required
                                             fullWidth
                                             label="Name"
-                                            
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
                                         />
                                     </Grid>
                                     <Grid item xs={6}>
@@ -86,7 +125,8 @@ const GuideBooking = () => {
                                             required
                                             fullWidth
                                             label="Email"
-                                            
+                                            value={email}
+                                             onChange={(e) => setEmail(e.target.value)}
                                         />
                                     </Grid>
                                 </Grid>
@@ -96,15 +136,17 @@ const GuideBooking = () => {
                                             required
                                             fullWidth
                                             label="Phone"
-                                            
+                                            value={phone}
+                                            onChange={(e) => setPhone(e.target.value)}
                                         />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <TextField
                                             required
                                             fullWidth
-                                            label="Tour Date"
-                                            
+                                            value={tourDate}
+                                            type='date'
+                                            onChange={(e) => setTourDate(e.target.value)}
                                         />
                                     </Grid>
                                 </Grid>
@@ -114,7 +156,8 @@ const GuideBooking = () => {
                                             required
                                             fullWidth
                                             label="Destination"
-                                            
+                                            value={tourLocation}
+                                            onChange={(e) => setTourLocation(e.target.value)}
                                         />
                                     </Grid>
                                     <Grid item xs={6}>
@@ -122,7 +165,8 @@ const GuideBooking = () => {
                                             required
                                             fullWidth
                                             label="Group Size"
-                                            
+                                            value={groupSize}
+                                            onChange={(e) => setGroupSize(e.target.value)}
                                         />
                                     </Grid>
                                 </Grid>
@@ -132,77 +176,15 @@ const GuideBooking = () => {
                                         name="requirements"
                                         label="Special Requirements"
                                         margin="normal"
-                                       
+                                        value={specialRequirements}
+                                        onChange={(e) => setSpecialRequirements(e.target.value)}
                                     />
                                 </Grid>
-                                {/* <Grid item xs={12}>
-                                    <FormControlLabel
-                                        control={
-                                            <Switch
-                                                checked={isDhlDelivery}
-                                                onChange={(event) =>
-                                                    setIsDhlDelivery(event.target.checked)
-                                                }
-                                                name="dhlDeliverySwitch"
-                                                color="primary"
-                                            />
-                                        }
-                                        label="DHL Delivery"
-                                    />
-                                </Grid> */}
-                                {/* {isDhlDelivery && (
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            label="Shipping address"
-                                            value={shippingAddress}
-                                            onChange={(event) =>
-                                                setShippingAddress(event.target.value)
-                                            }
-                                        />
-                                    </Grid>
-                                )} */}
                           
                             <Typography style={{ fontStyle:'italic', textAlign:'center', marginBottom: '16px', color: '#19376D', display:'flex'}}>
                               <center>You have to pay an advance of 4 USD to book a guide.</center>
                             </Typography>
 
-                            
-                                {/* <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Name on card"
-                                        
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Card number"
-                                        
-                                    />
-                                </Grid>
-                                <Grid container item spacing={2} xs={12}>
-                                    <Grid item xs={6}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            label="Expiry date"
-                                            
-                                        />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            label="CVV"
-                                            
-                                        />
-                                    </Grid>
-                                </Grid> */}
                               <Grid item xs={12}>
                                 <PayPalScriptProvider 
                                   options={{
@@ -225,6 +207,7 @@ const GuideBooking = () => {
                                       const details = await actions.order.capture();
                                       const name = details.payer.name.given_name;
                                       alert("Booking completed by " + name);
+                                      handleSubmit();
                                     }}
                                   />
                                 </PayPalScriptProvider>

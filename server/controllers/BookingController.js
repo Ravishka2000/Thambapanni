@@ -28,10 +28,10 @@ const createBooking = asyncHandler(async (req, res, next) => {
       paymentIntent: {
         id: uniqid(),
         method: "PayPal",
-        amount: "5000",
+        amount: "4.00",
         status: "Pending",
         created: Date.now(),
-        currency: "LKR",
+        currency: "USD",
     },
       status: "Pending",
       Customer: _id,
