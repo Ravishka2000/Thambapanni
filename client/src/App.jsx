@@ -22,6 +22,7 @@ import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
+import Bookings from './components/Guide/Bookings';
 
 function App() {
   const { user } = useAuthContext()
@@ -51,7 +52,7 @@ function App() {
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
                     <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
-                    <Route path="/editguide" element={<Editguide/>} exact></Route>
+                    <Route path="/bookings" element={<Bookings/>} exact></Route>
                 </Routes>
             </main>
 
