@@ -12,7 +12,7 @@ const UserProfileDisplay = () => {
     };
 
     return (
-        <div style={{backgroundColor:"white",height:"800px",display:'flex',justifyContent:"left",flexDirection:"column"}}>
+        <div style={{backgroundColor:"white",height:"700px",display:'flex',justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
             {isEditing ? (
                 <EditUser onEditToggle={handleEditToggle} />
             ) : (
@@ -20,7 +20,7 @@ const UserProfileDisplay = () => {
             )}
             {!isEditing && (
                 <Button onClick={handleEditToggle} variant="contained"
-                            sx={{ color: 'white', backgroundColor: "#3498DB", borderColor: 'green', width: '35ch', padding: 2, margin: 2, fontWeight: "bold",'&:hover': {background: '#3498DB'} }}
+                            sx={{ color: 'white', backgroundColor: "#9CCC65", borderColor: 'green', width: '35ch', padding: 1, margin: 3, fontWeight: "bold",'&:hover': {background: '#9CCC65'} }}
                     >
                     Edit
                 </Button>

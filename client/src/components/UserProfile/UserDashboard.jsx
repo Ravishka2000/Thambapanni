@@ -14,6 +14,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import UserProfileDisplay from "./UserProfileDisplay"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const UserDashboard=()=>{
 
     const [activeLink, setActiveLink] = useState('link1');
@@ -51,32 +52,13 @@ const UserDashboard=()=>{
                             backgroundColor: activeLink === 'link1' ? '#D5F5E3' : 'transparent', 
                             '&:hover': {
                               backgroundColor: '#D5F5E3',
-                            },
-                           
+                            }, 
                           }}
                       >
-                      <BarChartIcon/>
+                      <AccountCircleIcon/>
                         <ListItemText primary="My Profile" />
                       </ListItemButton>
                     </List>
-                    {/* <List>
-                      <ListItemButton
-                        onClick={() => handleLinkClick('link2')}
-                        className={activeLink === 'link2' ? 'active' : ''}
-                        sx={{
-                            backgroundColor: activeLink === 'link2' ? '#D5F5E3' : 'transparent', 
-                            '&:hover': {
-                              backgroundColor: '#D5F5E3',
-                            },
-                          }}
-                       
-                      >
-                      <GroupIcon/>
-                        <ListItemText primary="Users" 
-                          
-                        />
-                      </ListItemButton>
-                    </List> */}
                     <List>
                       <ListItemButton
                         onClick={() => handleLinkClick('link3')}
@@ -92,21 +74,6 @@ const UserDashboard=()=>{
                         <ListItemText primary="My Blogs" />
                       </ListItemButton>
                     </List>
-                    {/* <List>
-                      <ListItemButton
-                        onClick={() => handleLinkClick('link4')}
-                        className={activeLink === 'link4' ? 'active' : ''}
-                        sx={{
-                            backgroundColor: activeLink === 'link4' ? '#D5F5E3' : 'transparent', 
-                            '&:hover': {
-                              backgroundColor: '#D5F5E3',
-                            },
-                          }}
-                      >
-                      <EventNoteIcon/>
-                        <ListItemText primary="Events" />
-                      </ListItemButton>
-                    </List> */}
                   </Box>
                   </Item>
                 </Grid>

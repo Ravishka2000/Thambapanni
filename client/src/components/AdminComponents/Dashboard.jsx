@@ -20,6 +20,7 @@ const Dashboard = () => {
     const { user } = useAuthContext()
     const [users, setUsers] = useState([])
     const[heritages,setHeritages]=useState([])
+    const[events,setEvents] = useState([])
 
     const dateop = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -42,6 +43,17 @@ const Dashboard = () => {
 
         fetchUsers()
 
+        const fetchEvents = async () => {
+            try {
+                const response = await axios.get("http://localhost:7070/api/events/");
+                setEvents(response.data);
+                console.log(events);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchEvents();
+
         axios.get("http://localhost:7070/api/heritages")
         .then(response=>{
             setHeritages(response.data)
@@ -59,7 +71,7 @@ const Dashboard = () => {
     ];
 
     const userperMonth = Array(12).fill(0);
-    const heritagesperMonth = Array(12).fill(0);
+    const eventsPerMonth = Array(12).fill(0);
 
 
     for (const user of users) {
@@ -68,10 +80,10 @@ const Dashboard = () => {
         userperMonth[month]++;
     }
 
-    for (const heritage of heritages) {
-        const createdDate = new Date(heritage.createdAt);
+    for (const event of events) {
+        const createdDate = new Date(event.createdAt);
         const month = createdDate.getMonth();
-        heritagesperMonth[month]++;
+        eventsPerMonth[month]++;
     }
 
    
@@ -81,8 +93,8 @@ const Dashboard = () => {
         datasets: [{
             label: "Users Per Month",
             data: userperMonth,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgba(156, 39, 176, 0.2)',
+            borderColor: 'rgb(156, 39, 176)',
             borderWidth: 1
         }]
     }
@@ -91,7 +103,7 @@ const Dashboard = () => {
         labels: months,
         datasets: [{
             label: "Heritages Per Month",
-            data: heritagesperMonth,
+            data: eventsPerMonth,
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgb(54, 162, 235)',
             borderWidth: 1
@@ -126,24 +138,24 @@ const Dashboard = () => {
          <Box sx={{ width: '100%',paddingTop:"30px" }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={4} >
-                <Item elevation={0} style={{padding:"1rem",borderRadius:"15px",backgroundColor:"#D7BDE2"}}>
+                <Item elevation={0} style={{padding:"1rem",borderRadius:"15px",backgroundColor:"#CE93D8"}}>
                     <GroupIcon sx={{color:"#4A235A",fontSize:"3rem"}}/>
                     <Typography sx={{color:"#4A235A",fontSize:"1rem"}}>Total Users</Typography>
                     <Typography sx={{color:"#4A235A",fontSize:"2rem"}}>{users.length}</Typography>
                 </Item>
                 </Grid>
                 <Grid item xs={4}>
-                <Item elevation={0} style={{padding:"1rem",borderRadius:"15px",backgroundColor:"#A9CCE3"}}>
+                <Item elevation={0} style={{padding:"1rem",borderRadius:"15px",backgroundColor:"#90CAF9"}}>
                     <ArticleIcon sx={{color:"#154360",fontSize:"3rem"}}/>
                     <Typography sx={{color:"#154360",fontSize:"1rem"}}>Total Blogs</Typography>
                     <Typography sx={{color:"#154360",fontSize:"2rem"}}>{users.length}</Typography>
                 </Item>
                 </Grid>
                 <Grid item xs={4}>
-                <Item elevation={0} style={{padding:"1rem",borderRadius:"15px",backgroundColor:"#A3E4D7"}}>
+                <Item elevation={0} style={{padding:"1rem",borderRadius:"15px",backgroundColor:"#80DEEA"}}>
                     <EventNoteIcon sx={{color:"#0E6251",fontSize:"3rem"}}/>
                     <Typography sx={{color:"#0E6251",fontSize:"1rem"}}>Total Events</Typography>
-                    <Typography sx={{color:"#0E6251",fontSize:"2rem"}}>{users.length}</Typography>
+                    <Typography sx={{color:"#0E6251",fontSize:"2rem"}}>{events.length}</Typography>
                 </Item>
                 </Grid>
             </Grid>
@@ -161,9 +173,9 @@ const Dashboard = () => {
                 justifyContent="left"
                 alignItems="left"
                 flexDirection={"column"}>
-                <Typography sx={{ width: 100, padding: "20px",color:"black",fontStyle:"bold" }}
-                    variant="h4">
-                    Users
+                <Typography sx={{ width: 300,color:"black",fontStyle:"bold",textAlign:"left" }}
+                    variant="h6">
+                    Users Per Month
                 </Typography>
                 <Box>
                 </Box>
@@ -174,9 +186,9 @@ const Dashboard = () => {
                 justifyContent="left"
                 alignItems="left"
                 flexDirection={"column"}>
-                <Typography sx={{ width: 100, padding: "20px" ,color:"black",fontStyle:"bold" }}
-                    variant="h4">
-                    Heritages
+                <Typography sx={{ width: 300 ,color:"black",fontStyle:"bold",textAlign:"left" }}
+                    variant="h6">
+                    Events Held Per Month
                 </Typography>
                 <Box>
                 </Box>
