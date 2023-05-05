@@ -27,21 +27,29 @@ const getHeritage = async (req, res) => {
 
 //create a new heritage
 const createHeritage = asyncHandler(async (req, res) => {
-    const { title, description,location} = req.body;
-    let {image} = req.file;
-
+    const { title, description, location } = req.body;
+    let image;
+  
+    if (!req.file) {
+      return res.status(400).json({ error: "Please upload an image" });
+    }
+  
+    if (!title || !description || !location) {
+      return res.status(400).json({ error: "Please fill out all fields" });
+    }
+  
     const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: 'heritages',
+      folder: 'heritages',
     });
     image = result.secure_url;
-    
-    try{
-        const heritage = await Heritage.create({title,description,location,image})
-        res.status(200).json(heritage)
+  
+    try {
+      const heritage = await Heritage.create({ title, description, location, image });
+      res.status(200).json(heritage);
     } catch (error) {
-        res.status(400).json({ error: error.message })
+      res.status(400).json({ error: "Failed to create new heritage" });
     }
-});
+  });
 
 //get all heritges
 const getAllHeritages = asyncHandler(async (req, res) => {
@@ -61,7 +69,11 @@ const updateHeritage = async(req, res) => {
   
     let { title, description, location } = req.body;
     let image = req.file && req.file.path;
-  
+
+    if (!title || !description || !location) {
+        return res.status(400).json({ error: "Please fill out all fields" });
+      }
+      
     const heritage = await Heritage.findById(id);
   
     if (!heritage) {
@@ -86,7 +98,7 @@ const updateHeritage = async(req, res) => {
     
     heritage.title = title;
     heritage.description = description;
-    heritage.location = location;
+    heritage.location = location; 
   
     const updatedHeritage = await heritage.save();
   

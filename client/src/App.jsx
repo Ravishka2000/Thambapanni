@@ -18,6 +18,7 @@ import ManageHeritages from './components/AdminComponents/ManageHeritages';
 import EditHeritage from './components/AdminComponents/EditHeritage';
 import ViewHeritages from './components/Heritages/ViewHeritages';
 import ViewEvents from './components/Events/ViewEvents';
+import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
@@ -48,9 +49,9 @@ function App() {
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
+                    <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
                     <Route path="/editguide" element={<Editguide/>} exact></Route>
-
                 </Routes>
             </main>
 

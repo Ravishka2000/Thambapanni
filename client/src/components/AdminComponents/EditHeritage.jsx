@@ -2,8 +2,10 @@ import axios from "axios"
 import { useState,useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {Box,Grid,TextField,Button,Alert} from "@mui/material"
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import {Grid,TextField,Button,Alert,Container,Typography,IconButton} from "@mui/material"
+import Box from '@mui/system/Box';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 import { useParams } from "react-router-dom";
 
 const EditHeritage=()=>{
@@ -15,6 +17,7 @@ const EditHeritage=()=>{
     const[error,setError]=useState("")
     const[image,setImage] = useState("")
     const [imageUrl, setImageUrl] = useState('');
+    const[success,setSuccess] = useState('');
 
     useEffect(()=>{
         axios.get("http://localhost:7070/api/heritages/"+id)
@@ -58,8 +61,9 @@ const EditHeritage=()=>{
         })
         .then(response=>{
             console.log(response)
+            setSuccess("Heritage is updated successfully")
         }).catch(error=>{
-            console.log(error)
+            setError(error.response.data.error)
             
         })
 
@@ -67,18 +71,22 @@ const EditHeritage=()=>{
     }
 
     return( 
-        <div>
+        <div style={{backgroundColor:"#FAF9F6"}}>
+         <section>
+         <Container maxWidth="md">
+         <Box py={10}>
             <Box
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '100%' },
                     flexDirection: { xs: "column", sm: "row" },
                     padding:"2",
-                    marginTop:"50px"
                 }}
                 noValidate
                 autoComplete="off"
                 onSubmit={handleSubmit}
+                textAlign="center" 
+                mb={5}
             >
                  <Grid 
                     container
@@ -88,81 +96,118 @@ const EditHeritage=()=>{
                     justifyContent="left"
                     >
                     <div>
-                    <Grid item xs={12}
-                    style={{padding:" 1rem 2rem"}}
-                    >
-                        <Box 
-                        textAlign="left">
-                        <h1>
-                        Add Heritage
-                        </h1>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12}
-                    style={{ padding:" 1rem 2rem"}}>
-                    <TextField
-                            label="Title"
-                            variant="standard"
-                            focused
-                            onChange={(e) => setTitle(e.target.value)}
-                            value={title}
-                            style={{ width: '100%',color:'black' }}
-                    />
-                    </Grid>
-                    <Grid item xs={12}
-                    style={{ padding:" 1rem 2rem"}}>
-                    <TextField
                     
-                            label="Location"
-                            variant="standard"
-                            focused
-                            onChange={(e) => setLocation(e.target.value)}
-                            value={location}
-                            style={{ width: '100%',color:'black' }}
+                    <Grid item xs={12}
+                    style={{padding:"1rem 0"}}>
+                    <Typography variant="h4" component="span" color=" #313639" sx={{textTransform:"capitalize"}}>Edit Heritage </Typography>
+                    </Grid>
+
+                    <Container>
+                    <Box>
+                    <Grid item xs={12}>
+                    <TextField    
+                        focused  
+                        variant="outlined"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}  
+                        InputProps={{
+                                style: {
+                                  color: '#313639',
+                                  fontSize: '2.5rem',
+                                  outline: 'none',
+                                  whiteSpace: 'pre-wrap', 
+                                  wordWrap: 'break-word',
+                                  textAlign:'center',
+                                },
+                                wrap: 'soft'
+                        }}
+                        multiline
+                        helperText="Enter the title of your article"
+                        style={{margin:"0"}}
                     />
                     </Grid>
-                    <Grid item xs={12}
-                    style={{ padding:" 1rem 2rem"}}>
-                    <ReactQuill
-                        onChange={handleChange}
-                        value={description}
-                        style={{ height: '300px',padding:" 1rem 0" }}
-                        />
-                    </Grid>
+                    </Box>
+                    </Container>
 
                     <Grid item xs={12}
-                    style={{ padding:"2rem 2rem",display:"flex",flexDirection:"column"}}>
-                        <label style={{ padding:" 1rem 0"}}>
-                            Image
-                        </label>
-
-                        <input type="file" name="image" 
-                            onChange={handleImageChange} 
-                            style={{ width: '100%',color:'black' }}
-                        />
-                        {imageUrl && (
+                    style={{padding:"0 1.5rem "}}
+                    >
+                    <Box>
+                      <Box my={4} sx={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
+                      <input type="file" name="image" 
+                              onChange={handleImageChange} 
+                              style={{ display: 'none' }}
+                              id="image"     
+                                
+                      />
+                      <label htmlFor="image">
+                        <IconButton component="span"  style={{ display: 'flex', justifyContent: 'flex-start' ,backgroundColor:"none" ,'&:hover': {background: 'white'},width:"2.5rem"}} >
+                          <CloudUploadIcon />
+                        </IconButton>
+                        <Typography style={{textAlign:"left",color:" #313639",fontSize:"12px",padding:"5px"}}>Upload your image</Typography>
+                      </label>
+                      {imageUrl && (
                         <img
                         src={imageUrl}
                         alt="Uploaded image"
-                        style={{ width: '50%', height: 'auto' }}
+                        style={{ maxWidth:"100%"}}
                         />)}
+                      </Box>
+                    </Box>
                     </Grid>
+                    
+                    <Container>
+                    <Box my={4}>
+                    <Grid item xs={12}
+                    >     
+                    <TextField    
+                        focused  
+                        variant="outlined"
+                        onChange={(e) => setLocation(e.target.value)}
+                        value={location}
+                        InputProps={{
+                                style: {
+                                  color: '#313639',
+                                  fontSize: '1.25rem',
+                                  outline: 'none', 
+                                },
+                              
+                        }}
+                        multiline
+                        helperText="Enter the location of your destination"
+                        style={{margin:"0"}}
+                    />
+                    </Grid>
+                    </Box>
+                    </Container>
 
-                   
+                    <Grid item xs={12} style={{padding:"0 1.5rem "}}>
+                    <ReactQuill
+                        onChange={handleChange}
+                        value={description}
+                        style={{ height: '500px'}}
+                        />
+                    </Grid>
                     </div>
                     <Grid item xs={12}
-                    style={{ padding:" 1rem 2rem"}}>
+                    style={{ marginTop:"4rem",}}>
                         <Button variant="contained" type="submit"
-                        sx={{ color: 'white', backgroundColor: "#063970", borderColor: 'green', width: '45ch', padding:"1rem", fontWeight:"bold"}}
+                        sx={{ color: 'black', backgroundColor: "#F8C471", width: '30ch', padding:"1rem", fontWeight:"bold",'&:hover': {background: '#F8C471',boxShadow:"none"},boxShadow:"none"}}
                         >Edit</Button>
+
                     </Grid>
-                    {error && <Alert variant="filled" severity="error" style={{fontWeight:"bold",color: "#063970"}}>{error}</Alert>}
+                    <div style={{paddingTop:"20px"}}>
+                    {error && <Alert variant="outlined" severity="error" style={{width:"250px",margin:"auto"}}>{error}</Alert>}
+                    {success && <Alert variant="outlined" severity="success" style={{width:"250px",margin:"auto"}}>{success}</Alert>}
+                    </div>
                     </Grid>
                    
 
                 
             </Box>
-
+        </Box>
+        </Container>
+        </section>
         </div>
     )
 
