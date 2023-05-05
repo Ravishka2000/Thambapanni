@@ -7,7 +7,6 @@ import { Grid } from '@mui/material';
 import Button from "@mui/material/Button";
 import axios from 'axios';
 import Alert from "@mui/material/Alert"
-import { set } from 'mongoose';
 import { Card, CardContent, Container } from '@mui/material';
 
 const EditProfile = ({ onEditToggle }) => {
