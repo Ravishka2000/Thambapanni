@@ -45,44 +45,44 @@ const Bookings = () => {
           <TableContainer component={Paper} sx={{ margin: "auto", width: 1200 }} elevation={0}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
-                      <TableRow>
-                          <TableCell>Booking Id</TableCell>
-                          <TableCell align="right">Name</TableCell>
-                          <TableCell align="right">Date</TableCell>
-                          <TableCell align="right">Location</TableCell>
-                          <TableCell align="right">Group size</TableCell>
-                          <TableCell align="right">Phone</TableCell>
-                          <TableCell align="right">Email</TableCell>
-                          <TableCell align="right">Status</TableCell>
+                      <TableRow sx={{ backgroundColor: 'black' }}>
+                          <TableCell  sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Booking Id</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Name</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Date</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Location</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Group size</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Phone</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Email</TableCell>
+                          <TableCell align="right" sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Status</TableCell>
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {bookings && bookings.filter(booking => booking.Customer === user._id).map(booking => (
+                  {bookings && bookings.filter(booking => booking.guide === user._id).map(booking => (
                       <TableRow
                         key={booking._id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    <TableCell component="th" >
+                    <TableCell component="th" scope="row">
                     {booking._id}
                     </TableCell>
-                    <TableCell component="th" align="right">
+                    <TableCell align="right">
                     {booking.name}
                     </TableCell>
-                    <TableCell component="th" align="right" >
+                    <TableCell align="right" >
                     {new Date(booking.tourDate).toLocaleDateString()}
                     </TableCell>
-                    <TableCell component="th" align="right" >
+                    <TableCell align="right" >
                     {booking.tourLocation}
                     </TableCell>
-                    <TableCell component="th" align="right" >
+                    <TableCell align="right" >
                     {booking.groupSize}
                     </TableCell>
-                    <TableCell component="th" align="right" >
+                    <TableCell align="right" >
                     {booking.phone}
                     </TableCell>
-                    <TableCell component="th" align="right" >
+                    <TableCell align="right" >
                     {booking.email}
                     </TableCell>
-                    <TableCell component="th" align="right" >
+                    <TableCell align="right" >
                     {booking.Status}
                     </TableCell>
                       </TableRow>
@@ -94,6 +94,7 @@ const Bookings = () => {
           </TableContainer>
 
       </Box>
+      <Box height={500}/>
   </div>
     );
 }
