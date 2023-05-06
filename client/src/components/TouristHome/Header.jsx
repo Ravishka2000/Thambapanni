@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useLogout } from '../../hooks/useLogout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Header = () => {
 
@@ -65,7 +66,7 @@ const Header = () => {
                         </Box>
                         {user ? (
                             <>
-                                <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'black', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>{user.firstName}</Typography>
+                                <Typography component={Link} to={user.role==="admin"?"/api/admin-dashboard":"/user-dashboard"} sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'black', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>{user.role==="admin" ? "Admin Dashboard" :user.role==="guide"? "Guide Dashboard":"Profile"}</Typography>
                                 <Button onClick={handleLogoutClick} component={Link} to="/" sx={{ textDecoration: 'none', textTransform: 'none', fontSize: '18px', fontWeight: '800', color: 'black', pl: '20px', marginRight: '20px', display: { xs: 'none', md: 'block' } }}>Logout</Button>
                             </>
                         ) : (
@@ -96,7 +97,7 @@ const Header = () => {
                             <Divider />
                             {user ? (
                                 <>
-                                    <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>{user.firstName}</Typography>
+                                    <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>{user.role}</Typography>
                                     <Button onClick={handleLogoutClick} component={Link} to="/" sx={{ textDecoration: 'none', textTransform: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px', ml: '0' }}>Logout</Button>
                                 </>
                             ) : (

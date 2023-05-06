@@ -25,10 +25,11 @@ import ContactUs from './components/TouristHome/ContactUs';
 import Profile from './components/Guide/Profile';
 import AddEvent from './components/Events/AddEvent';
 import EditEvents from './components/Events/EditEvents';
-
+import UserDashboard from './components/UserProfile/UserDashboard';
 
 function App() {
-    const { user } = useAuthContext()
+  const { user } = useAuthContext()
+  const isAdmin = user && user.role === 'admin';
 
     return (
         <React.Fragment>
@@ -59,6 +60,7 @@ function App() {
                     <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
                     <Route path="/guide-dashboard" element={<Dashboard />} exact></Route>
                     <Route path="/editguide" element={<Editguide />} exact></Route>
+                    <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
                 </Routes>
             </main>
 

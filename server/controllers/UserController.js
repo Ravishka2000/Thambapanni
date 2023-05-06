@@ -17,8 +17,8 @@ const createUser = asyncHandler(async (req, res) => {
 
     //validate inputs
     if (!email || !password || !firstName || !lastName || !mobile) {
-        res.status(400);
-        throw new Error("Please fill out all fields");
+        res.status(400).json({ message: 'Please fill out all fields' });
+        return;
     }
 
     if (!findUser) {
@@ -31,7 +31,8 @@ const createUser = asyncHandler(async (req, res) => {
             role
         });
     } else {
-        throw new Error("User already exists");
+        res.status(400).json({ message: 'User already exists' });
+        return;
     }
 
     const user = await User.findOne({ email });
@@ -69,16 +70,16 @@ const loginUser = asyncHandler(async (req, res) => {
     //get email and password from body 
     const { email, password } = req.body;
     if (!email || !password) {
-        res.status(400);
-        throw new Error("Please enter email and password");
+        res.status(400).json({ message: 'Please fill out all fields' });
+        return;
     }
 
     //validate user
     const user = await User.findOne({ email });
 
     if (!user) {
-        res.status(400);
-        throw new Error("User not found, Please SignUp");
+        res.status(400).json({ message: 'User not found, Please SignUp' });
+        return;
     }
 
     const passwordIsCorrect = await bcrypt.compare(password, user.password);
@@ -109,8 +110,8 @@ const loginUser = asyncHandler(async (req, res) => {
             role
         })
     } else {
-        res.status(400);
-        throw new Error("Invalid Email or Password");
+        res.status(400).json({ message: 'Invalid Email or Password' });
+        return;
     }
 
 });
@@ -369,10 +370,12 @@ const forgotPasswordToken = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!email) {
-        throw new Error("Please enter the email");
+        res.status(400).json({ message: 'Please enter the email address' });
+        return;
     }
     if (!user) {
-        throw new Error("Invalid email");
+        res.status(400).json({ message: 'Invalid email' });
+        return;
     }
     try {
         //send the reset password link
@@ -425,7 +428,8 @@ const resetPassword = asyncHandler(async (req, res) => {
         }
     });
     if (!user) {
-        throw new Error("Token expired, please try again");
+        res.status(400).json({ message: 'Token expired, please try agai' });
+        return;
     }
     user.password = password;
     user.passwordResetToken = undefined;
