@@ -51,8 +51,25 @@ const getAllBookings = asyncHandler(async (req, res) => {
     res.json(bookings);
 });
 
+//update booking status
+const updateStatus = asyncHandler(async (req, res) => {
+    const { status } = req.body;
+    const { id } = req.params;
+    try {
+        const updateStatus = await Booking.findByIdAndUpdate(id, {
+            Status: status,
+        }, {
+            new: true
+        })
+        res.json(updateStatus);
+    } catch (error) {
+        throw new Error(error);
+    }
+});
 
 export default {
     createBooking,
     getAllBookings,
+    updateStatus
+
 }

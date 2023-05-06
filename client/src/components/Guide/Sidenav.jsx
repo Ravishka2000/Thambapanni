@@ -143,6 +143,9 @@ export default function Sidenav() {
                                 minHeight: 48,
                                 justifyContent: open ? 'initial' : 'center',
                                 px: 3.5,
+                                '&:hover': {
+                                    backgroundColor: '#D5F5E3',
+                                  },
                             }}
                         >
                             <ListItemIcon
@@ -167,6 +170,9 @@ export default function Sidenav() {
                                 minHeight: 48,
                                 justifyContent: open ? 'initial' : 'center',
                                 px: 2.5,
+                                '&:hover': {
+                                    backgroundColor: '#D5F5E3',
+                                  },
                             }}
                         >
                             <ListItemIcon
@@ -192,6 +198,9 @@ export default function Sidenav() {
                                 minHeight: 48,
                                 justifyContent: open ? 'initial' : 'center',
                                 px: 2.5,
+                                '&:hover': {
+                                    backgroundColor: '#D5F5E3',
+                                  },
                             }}
                         >
                             <ListItemIcon
