@@ -46,7 +46,7 @@ const createBooking = asyncHandler(async (req, res, next) => {
 });
 
 const getAllBookings = asyncHandler(async (req, res) => {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find().populate("guide");
 
     res.json(bookings);
 });
