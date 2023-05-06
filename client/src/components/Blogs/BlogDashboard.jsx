@@ -12,6 +12,7 @@ const Blogs = () => {
       console.log("data", data);
       if (data?.success) {
         setBlogs(data?.blogs);
+        console.log({data})
       }
     } catch (error) {
       console.log(error);

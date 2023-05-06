@@ -32,6 +32,7 @@ import EditEvents from './components/Events/EditEvents';
 import UserDashboard from './components/UserProfile/UserDashboard';
 import GuideSignup from './pages/GuideSignup';
 import SignupRole from './pages/SignupRole';
+import DisplayABlog from './components/Blogs/DisplayABlog';
 
 function App() {
   const { user } = useAuthContext()
@@ -72,6 +73,7 @@ function App() {
                     <Route path="/my-blog" element={<UserBlogs />} exact></Route>
                     <Route path="/create-blog" element={<CreateBlog />} exact></Route>
                     <Route path="/blog-details/:id" element={<BlogDetails />} exact></Route>
+                    <Route path="/a_blog/:id" element={<DisplayABlog />} exact></Route>
                     <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
                     
                 </Routes>

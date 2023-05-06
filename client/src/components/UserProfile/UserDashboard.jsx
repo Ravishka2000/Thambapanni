@@ -17,6 +17,8 @@ import UserProfileDisplay from "./UserProfileDisplay";
 import Bookings from "./Bookings";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import UserBlogs from '../Blogs/UserBlogs';
+
 const UserDashboard=()=>{
 
     const [activeLink, setActiveLink] = useState('link1');
@@ -99,6 +101,7 @@ const UserDashboard=()=>{
                   {activeLink === 'link1' && <UserProfileDisplay/>}
                   {/* {activeLink === 'link4' && <UsersChart/>}   */}
                   {activeLink === 'link3' && <Bookings/>}
+                  {activeLink === 'link3' && <UserBlogs/>}
                   </Item>
                 </Grid>
               </Grid>
