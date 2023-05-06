@@ -66,7 +66,7 @@ const Header = () => {
                         </Box>
                         {user ? (
                             <>
-                                <Typography component={Link} to={user.role==="admin"?"/api/admin-dashboard":"/user-dashboard"} sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'black', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>{user.role==="admin" ? "Admin Dashboard" :user.role==="guide"? "Guide Dashboard":"Profile"}</Typography>
+                                <Typography component={Link} to={user.role==="admin"?"/api/admin-dashboard":user.role === "guide" ? "/guide-dashboard" : "/user-dashboard"} sx={{ textDecoration: 'none', fontSize: '18px', fontWeight: '800', color: 'black', pl: '20px', marginLeft: 'auto', display: { xs: 'none', md: 'block' } }}>{user.role==="admin" ? "Admin Dashboard" :user.role==="guide"? "Guide Dashboard":"Profile"}</Typography>
                                 <Button onClick={handleLogoutClick} component={Link} to="/" sx={{ textDecoration: 'none', textTransform: 'none', fontSize: '18px', fontWeight: '800', color: 'black', pl: '20px', marginRight: '20px', display: { xs: 'none', md: 'block' } }}>Logout</Button>
                             </>
                         ) : (
@@ -103,7 +103,7 @@ const Header = () => {
                             ) : (
                                 <>
                                     <Typography component={Link} to="/login" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Login</Typography>
-                                    <Typography component={Link} to="/signup" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Register</Typography>
+                                    <Typography component={Link} to="/rolesignup" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Register</Typography>
                                 </>
                             )}
                         </Box>

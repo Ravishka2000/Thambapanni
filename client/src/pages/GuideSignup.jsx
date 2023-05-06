@@ -13,13 +13,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert"
 
-const Signup = () => {
+const GuideSignup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
     const [mobile, setMobile] = useState('');
-    const [role, setRole] = useState('Customer');
+    const [role, setRole] = useState('guide');
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -45,13 +45,14 @@ const Signup = () => {
             
           }} >
             <Grid item sx={{ display: { xs: 'none', md: 'block' }, alignItems: 'center', justifyContent: 'center', height: 650}} xs={6} md={6}>  
-                <img src="https://www.triptipedia.com/tip/img/MY5ZwP4OK.jpg" alt="Example Image" style={{ width: '100%', height: '100%', objectFit: 'cover',borderRadius:"2rem 0 0 2rem" }} />  
+                <img src="https://img.freepik.com/free-photo/happy-tourists-with-map_23-2147643228.jpg?size=626&ext=jpg" alt="Example Image" style={{ width: '100%', height: '100%', objectFit: 'cover',borderRadius:"2rem 0 0 2rem" }} />  
             </Grid>
 
         <Grid item xs={6} md={6} sx={{height: 650}}>
-
+            
        
             <Box
+
                 component="form"
                 sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -61,6 +62,8 @@ const Signup = () => {
                 autoComplete="off"
                 onSubmit={handleSubmit}
             >
+
+            
                 <Grid
                     container
                     spacing={0}
@@ -185,4 +188,4 @@ const Signup = () => {
 
 }
 
-export default Signup;
+export default GuideSignup;

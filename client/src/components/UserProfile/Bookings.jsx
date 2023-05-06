@@ -8,11 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useAuthContext } from "../../hooks/useAuthContext"
-import axios from 'axios';
-import { FormControl } from "@mui/material";
-import { Select } from "@mui/material";
-import { MenuItem } from "@mui/material";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Bookings = () => {
 
@@ -28,23 +24,6 @@ const Bookings = () => {
             .catch((err) => console.log(err));
     }, []);
 
-    const approveOrder = (id, newStatus) => {
-            axios.put('http://localhost:7070/api/Booking/update/' + id, { status: newStatus })
-            .then(response => {
-                if (response.status === 200) {
-                    const updatedStatus = bookings.map(booking => {
-                        if (booking._id === id) {
-                            return { ...booking, bookingStatus: newStatus };
-                        }
-                        return booking;
-                    });
-                    setbookings(updatedStatus);
-                }
-
-            }).catch(error => {
-                console.log(error)
-            })
-    }
 
     useEffect(() => {
         if (bookings) {
@@ -63,32 +42,34 @@ const Bookings = () => {
           flexDirection={"column"}>
           <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D', padding: '3', }}>
               My Bookings
-          </Typography>
-          <TableContainer component={Paper} sx={{ margin: "auto", width: 1200 }} elevation={0}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          </Typography><br/>
+          <TableContainer component={Paper} sx={{ margin: "auto", width: 1200 }} elevation={8}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table" >
                   <TableHead>
-                      <TableRow sx={{ backgroundColor: '#3aff0031' }}>
-                          <TableCell  sx={{ color: 'black', fontWeight: 'bold' }}>Booking Id</TableCell>
-                          <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Name</TableCell>
+                      <TableRow sx={{ backgroundColor: '#EBF5FB' }}>
+                          <TableCell  sx={{ color: 'black', fontWeight: 'bold' }}>Booking Id</TableCell>   
+                          <TableCell  sx={{ color: 'black', fontWeight: 'bold' }}>Guide</TableCell> 
+                          <TableCell  sx={{ color: 'black', fontWeight: 'bold' }}>Contact no</TableCell>                   
                           <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Date</TableCell>
                           <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Location</TableCell>
                           <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Group size</TableCell>
-                          <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Phone</TableCell>
-                          <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Email</TableCell>
                           <TableCell align="right" sx={{ color: 'black', fontWeight: 'bold' }}>Status</TableCell>
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {bookings && bookings.filter(booking => booking.guide._id === user._id).map(booking => (
+                  {bookings && bookings.filter(booking => booking.Customer === user._id).map(booking => (
                       <TableRow
                         key={booking._id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th" scope="row">
                     {booking._id}
+                    </TableCell>  
+                    <TableCell component="th" scope="row">
+                    {booking.guide.firstName} {booking.guide.lastName}
                     </TableCell>
-                    <TableCell align="right">
-                    {booking.name}
-                    </TableCell>
+                    <TableCell component="th" scope="row">
+                    {booking.guide.mobile}
+                    </TableCell>                
                     <TableCell align="right" >
                     {new Date(booking.tourDate).toLocaleDateString()}
                     </TableCell>
@@ -99,26 +80,7 @@ const Bookings = () => {
                     {booking.groupSize}
                     </TableCell>
                     <TableCell align="right" >
-                    {booking.phone}
-                    </TableCell>
-                    <TableCell align="right" >
-                    {booking.email}
-                    </TableCell>
-                    <TableCell align="right" >
-                    <FormControl>
-                                            <Select
-                                                value={booking.Status}
-                                                onChange={(e) => {
-
-                                                    approveOrder(booking._id, e.target.value);
-                                                }}
-                                            >
-                                                <MenuItem value="Pending">Pending</MenuItem>
-                                                <MenuItem value="Accepted">Accepted</MenuItem>
-                                                <MenuItem value="Canceled">Canceled</MenuItem>
-                                                <MenuItem value="Done">Done</MenuItem>
-                                            </Select>
-                                        </FormControl>
+                    {booking.Status}
                     </TableCell>
                       </TableRow>
                      ))}

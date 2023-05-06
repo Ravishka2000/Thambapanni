@@ -46,13 +46,30 @@ const createBooking = asyncHandler(async (req, res, next) => {
 });
 
 const getAllBookings = asyncHandler(async (req, res) => {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find().populate("guide");
 
     res.json(bookings);
 });
 
+//update booking status
+const updateStatus = asyncHandler(async (req, res) => {
+    const { status } = req.body;
+    const { id } = req.params;
+    try {
+        const updateStatus = await Booking.findByIdAndUpdate(id, {
+            Status: status,
+        }, {
+            new: true
+        })
+        res.json(updateStatus);
+    } catch (error) {
+        throw new Error(error);
+    }
+});
 
 export default {
     createBooking,
     getAllBookings,
+    updateStatus
+
 }
