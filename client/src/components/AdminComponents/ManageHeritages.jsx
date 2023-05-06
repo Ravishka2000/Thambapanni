@@ -7,13 +7,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
-
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const ManageHeritages=()=>{
     
     const[heritages,setHeritages]=useState([])
     const[search,setSearch] = useState("")
     const[original,setOriginal] = useState([])
+    const { user } = useAuthContext()
 
     useEffect(()=>{
         axios.get("http://localhost:7070/api/heritages")
@@ -26,8 +27,11 @@ const ManageHeritages=()=>{
     },[])
 
     const handleDelete=(id)=>{
-
-        axios.delete("http://localhost:7070/api/heritages/"+id)
+        axios.delete("http://localhost:7070/api/heritages/"+id,{
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+            }
+        })
         .then(response=>{
             console.log(response)
         }).catch(error=>{
