@@ -98,7 +98,7 @@ const updatePost = asyncHandler(async (req, res) => {
 const getSinglePost = asyncHandler(async (req, res) => {
     try {
         const { id } = req.params;
-        const blog = await Post.findById(id);
+        const blog = await Post.findById(id).populate("comments.user");
         if (!blog) {
             return res.status(404).send({
                 success: false,
