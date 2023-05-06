@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
 import Post from "../models/PostModel.js";
 import mongoose from "mongoose";
+import { response } from "express";
 
 const createPost = asyncHandler(async (req, res) => {
     try {
@@ -231,30 +232,38 @@ const deleteComment = asyncHandler(async (req, res) => {
 
 const likePost = asyncHandler(async (req, res) => {
 
-    const { postId } = req.body;
+    const postId = req.body.id;
     const userId = req.user._id;
 
     try {
         // Find the post by its ID
-        const post = await postModel.findById(postId);
+        const post = await Post.findById(postId);
 
         // Check if the user has already liked the post
         if (post.likes.includes(userId)) {
             // User has already liked the post, remove the like
             post.likes.pull(userId);
+            post.isLiked = false;
         } else {
             // Add the user's ID to the likes array
             post.likes.push(userId);
+            post.isLiked = true;
         }
 
         // Remove the user's ID from the disLikes array if present
         post.disLikes.pull(userId);
+        post.isDisliked = false;
+
 
         // Save the updated post
         await post.save();
 
         // Return the updated post
-        return post;
+        res.json({
+            post,
+            likes: post.likes.length,
+            dislikes: post.disLikes.length,
+        })
     } catch (error) {
         throw new Error(error.message);
     }
@@ -262,33 +271,40 @@ const likePost = asyncHandler(async (req, res) => {
 
 const dislikePost = asyncHandler(async (req, res) => {
 
-    const { postId } = req.body;
+    const postId = req.body.id;
     const userId = req.user._id;
-    
+
     try {
         // Find the post by its ID
-        const post = await postModel.findById(postId);
+        const post = await Post.findById(postId);
 
         // Check if the user has already liked the post
         if (post.likes.includes(userId)) {
             // User has already liked the post, remove the like
             post.likes.pull(userId);
+            post.isLiked = false;
         }
 
         // Check if the user has already disliked the post
         if (post.disLikes.includes(userId)) {
             // User has already disliked the post, remove the dislike
             post.disLikes.pull(userId);
+            post.isDisliked = false;
         } else {
             // Add the user's ID to the disLikes array
             post.disLikes.push(userId);
+            post.isDisliked = true;
         }
 
         // Save the updated post
         await post.save();
 
         // Return the updated post
-        return post;
+        res.json({
+            post,
+            likes: post.likes.length,
+            dislikes: post.disLikes.length,
+        })
     } catch (error) {
         throw new Error(error.message);
     }
