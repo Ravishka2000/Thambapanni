@@ -78,7 +78,6 @@ const ResetPassword = () => {
                                         <InputAdornment position="end">
                                             <IconButton
                                                 aria-label="toggle password visibility"
-
                                                 onClick={handleClickShowPassword}
                                                 edge="end"
                                             >
@@ -93,9 +92,10 @@ const ResetPassword = () => {
                     </div>
                     <Grid item xs={20}>
                         <Button variant="contained" type="submit"
-                            sx={{ color: 'white', backgroundColor: "#063970", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold" }}>Reset Password</Button>
-                        {error && <Alert variant="filled" severity="error" style={{ fontWeight: "bold" }} >{error}</Alert>}
-                        {success && <Alert variant="filled" severity="success">{success}</Alert>}
+                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '48ch', padding: 2, margin: 2, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
+                        >Reset Password</Button>
+                        {error && <Alert variant="outlined" severity="error" style={{ fontWeight: "bold" }} >{error}</Alert>}
+                        {success && <Alert variant="outlined" severity="success">{success}</Alert>}
                     </Grid>
 
                 </Grid>
