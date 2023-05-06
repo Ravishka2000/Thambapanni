@@ -22,6 +22,9 @@ import AdminDashboard from './components/AdminComponents/AdminDashboard';
 import Editguide from './components/Guide/EditProfile'
 import AboutUs from './components/TouristHome/AboutUs';
 import ContactUs from './components/TouristHome/ContactUs';
+import Profile from './components/Guide/Profile';
+import AddEvent from './components/Events/AddEvent';
+import EditEvents from './components/Events/EditEvents';
 import UserDashboard from './components/UserProfile/UserDashboard';
 
 function App() {
@@ -38,21 +41,25 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
+                    <Route path="/guide-profile" element={<Profile />} exact></Route>
                     <Route path="/heritages" element={<ViewHeritages />} exact></Route>
                     <Route path="/events" element={<ViewEvents />} exact></Route>
+                    <Route path="/create-events" element={<AddEvent />} exact></Route>
+                    <Route path="/edit-event/:id" element={<EditEvents />} exact></Route>
                     <Route path="/about" element={<AboutUs />} exact></Route>
                     <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
-                    <Route path="/signup" element={!user ? <Signup /> :<Navigate to="/login"></Navigate>}/>
-                    <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
-                    <Route path="/reset-password" element={!user ? <ForgetPassword /> :<Navigate to="/"></Navigate>}/>
+                    <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/login"></Navigate>} />
+                    <Route path="/login" element={!user ? <Login /> : <Navigate to="/"></Navigate>} />
+                    <Route path="/reset-password" element={!user ? <ForgetPassword /> : <Navigate to="/"></Navigate>} />
                     <Route path="/api/user/reset-password/:token" element={<ResetPassword />} exact></Route>
-                    <Route path="/api/createHeritages" element={isAdmin ? <CreateHeritage />:<Navigate to="/"/>} exact></Route> 
+                    <Route path="/api/createHeritages" element={<CreateHeritage />} exact></Route>
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
-                    <Route path="/api/editHeritages/:id" element={isAdmin ? <EditHeritage />:<Navigate to="/"/>} exact></Route>
-                    <Route path="/api/admin-dashboard" element={isAdmin ? <AdminDashboard />:<Navigate to="/"/>} exact></Route>
-                    <Route path="/guide-dashboard" element={<Dashboard/>} exact></Route>
-                    <Route path="/editguide" element={<Editguide/>} exact></Route>
+                    <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
+                    <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
+                    <Route path="/api/admin-dashboard" element={<AdminDashboard />} exact></Route>
+                    <Route path="/guide-dashboard" element={<Dashboard />} exact></Route>
+                    <Route path="/editguide" element={<Editguide />} exact></Route>
                     <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
                 </Routes>
             </main>
