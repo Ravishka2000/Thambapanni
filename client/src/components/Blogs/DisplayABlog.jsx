@@ -7,6 +7,8 @@ import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const DisplayABlog = () => {
     const { user } = useAuthContext();
@@ -19,6 +21,7 @@ const DisplayABlog = () => {
     const [rating, setrating] = useState(0);
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
+    const [edit, setEdit] = useState(false);
 
     const handleCommentChange = (event) => {
         setComment(event.target.value);
@@ -121,6 +124,10 @@ const DisplayABlog = () => {
         }
     }
 
+    const handleEditIcon = () => {
+        setEdit(true);
+    }
+
     return (
         <Box>
             <Box style={{ backgroundColor: "#FAF9F6" }}>
@@ -170,7 +177,7 @@ const DisplayABlog = () => {
                     </Container>
                 </section>
             </Box>
-            <Box display="flex" p={10}>
+            <Box display="flex" px={30}>
                 <Box width="50%" pr={2} display={'flex'} flexDirection={'column'} justifyContent={'center'}>
                     <Typography variant="h6">Rate this Place</Typography>
                     <Rating
@@ -211,25 +218,40 @@ const DisplayABlog = () => {
                             {comment.user && (
                                 <Card variant='outlined' sx={{ my: "40px", p: "10px" }}>
                                     <CardContent>
-                                        <Box sx={{ display: 'flex', alignItems: 'center' }} mb={3}>
-                                            <IconButton sx={{ p: 0, marginRight: "10px" }}>
-                                                <Avatar alt={comment.user.firstName} />
-                                            </IconButton>
-                                            <Typography>{comment.user.firstName} {comment.user.lastName}</Typography>
+                                        <Box sx={{ display: 'flex', alignItems: 'center' }} mb={3} justifyContent={'space-between'}>
+
+                                            <Box display={'flex'} alignItems={'center'}>
+                                                <IconButton sx={{ p: 0, marginRight: "10px" }}>
+                                                    <Avatar alt={comment.user.firstName} />
+                                                </IconButton>
+                                                <Typography>{comment.user.firstName} {comment.user.lastName}</Typography>
+                                            </Box>
+                                            <Box>
+                                                {comment.user._id == user._id && (
+                                                    <Box>
+                                                        <IconButton onClick={handleEditIcon}>
+                                                            <ModeEditIcon />
+                                                        </IconButton>
+                                                        <IconButton>
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </Box>
+                                                )}
+                                            </Box>
                                         </Box>
+                                        {edit ? (
+                                            <TextField value={comment.text}></TextField>
+                                        ) : (
+                                            <Typography>{comment.text}</Typography>
 
-                                        <Typography>{comment.text}</Typography>
-
+                                        )}
                                     </CardContent>
                                 </Card>
                             )}
                         </>
                     ))}
-
                 </Container>
             </Grid>
-
-
 
         </Box>
     )
