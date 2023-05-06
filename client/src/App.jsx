@@ -30,6 +30,7 @@ import Profile from './components/Guide/Profile';
 import AddEvent from './components/Events/AddEvent';
 import EditEvents from './components/Events/EditEvents';
 import UserDashboard from './components/UserProfile/UserDashboard';
+import GuideSignup from './pages/GuideSignup';
 
 function App() {
   const { user } = useAuthContext()
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/login"></Navigate>} />
+                    <Route path="/guide-signup" element={!user ? <GuideSignup /> : <Navigate to="/login"></Navigate>} />
                     <Route path="/login" element={!user ? <Login /> : <Navigate to="/"></Navigate>} />
                     <Route path="/reset-password" element={!user ? <ForgetPassword /> : <Navigate to="/"></Navigate>} />
                     <Route path="/api/user/reset-password/:token" element={<ResetPassword />} exact></Route>

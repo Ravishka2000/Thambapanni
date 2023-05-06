@@ -79,7 +79,7 @@ const Bookings = () => {
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {bookings && bookings.filter(booking => booking.guide === user._id).map(booking => (
+                  {bookings && bookings.filter(booking => booking.guide._id === user._id).map(booking => (
                       <TableRow
                         key={booking._id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
