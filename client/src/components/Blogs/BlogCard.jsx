@@ -9,10 +9,10 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Box from "@mui/material/Box"; // Import Box component
+import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "axios"
 
 export default function BlogCard({
   title,
@@ -40,6 +40,8 @@ const handleDelete = async () => {
       console.log(error);
     }
 };
+
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   return (
     
@@ -69,14 +71,14 @@ const handleDelete = async () => {
   <Link to={`/a_blog/${id}`} style={{textDecoration:"none",color:"black"}}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }}>
             {username}
           </Avatar>
         }
         title={username}
-        subheader={time}
+        subheader={new Date(time).toLocaleDateString('en-US', options)}
       />
-      <CardMedia component="img" height="194" image={image} alt="Paella dish" />
+      <CardMedia component="img" height="194" image={image} />
       <CardContent>
         <Typography variant="h6" color="text.secondary">
           {title}

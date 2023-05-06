@@ -15,6 +15,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import UserProfileDisplay from "./UserProfileDisplay"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import UserBlogs from '../Blogs/UserBlogs';
 const UserDashboard=()=>{
 
     const [activeLink, setActiveLink] = useState('link1');
@@ -80,7 +81,7 @@ const UserDashboard=()=>{
                 <Grid item xs={10} sx={{boxShadow:"none"}} elevation={0}>
                   <Item sx={{boxShadow:"none",backgroundColor:"#FAF9F6"}}>
                   {activeLink === 'link1' && <UserProfileDisplay/>}
-                  {/* {activeLink === 'link4' && <UsersChart/>}   */}
+                  {activeLink === 'link3' && <UserBlogs/>}
                   </Item>
                 </Grid>
               </Grid>
