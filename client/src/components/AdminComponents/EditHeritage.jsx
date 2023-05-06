@@ -5,12 +5,14 @@ import 'react-quill/dist/quill.snow.css';
 import {Grid,TextField,Button,Alert,Container,Typography,IconButton} from "@mui/material"
 import Box from '@mui/system/Box';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 import { useParams } from "react-router-dom";
 
 const EditHeritage=()=>{
 
     const id = useParams().id
+    const { user } = useAuthContext()
     const[title,setTitle] = useState("")
     const[description,setDescription] = useState("")
     const[location,setLocation]= useState("")
@@ -56,7 +58,9 @@ const EditHeritage=()=>{
 
         axios.patch("http://localhost:7070/api/heritages/"+id,formData,{
             headers: {
-                'Content-Type': 'multipart/form-data'
+                
+                'Authorization': `Bearer ${user.token}`,
+                'Content-Type': 'multipart/form-data',
             }
         })
         .then(response=>{

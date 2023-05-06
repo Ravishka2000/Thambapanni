@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -108,7 +109,7 @@ export default function Sidenav() {
     return (
         <><Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" elevation={4} sx={{ backgroundColor: "#ffffff", color: "#2f2f2f" }}>
+            <AppBar position="fixed" elevation={4} sx={{ background: "#063970", padding: "6px" }}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -122,7 +123,7 @@ export default function Sidenav() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography component={Link} to="/" sx={{ textDecoration: 'none', fontSize: '28px', fontWeight: '900', color: 'black' }}>
                         Thambapanni
                     </Typography>
                 </Toolbar>
@@ -141,7 +142,7 @@ export default function Sidenav() {
                             sx={{
                                 minHeight: 48,
                                 justifyContent: open ? 'initial' : 'center',
-                                px: 2.5,
+                                px: 3.5,
                             }}
                         >
                             <ListItemIcon

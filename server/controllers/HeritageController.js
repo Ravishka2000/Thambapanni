@@ -15,7 +15,6 @@ cloudinary.config({
 //get a heritage
 const getHeritage = async (req, res) => {
     const { id } = req.params
-
     const heritage = await Heritage.findById(id)
 
     if (!heritage) {
@@ -109,7 +108,7 @@ const updateHeritage = async(req, res) => {
 //delete heritage 
 const deleteHeritage = async (req, res) => {
     const { id } = req.params
-
+    
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: "No such heritage" })
     }

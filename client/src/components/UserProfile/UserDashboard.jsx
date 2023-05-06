@@ -9,17 +9,13 @@ import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import ManageHeritages from "./ManageHeritages"
-import Users from './Users';
-import Dashboard from './Dashboard';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import GroupIcon from '@mui/icons-material/Group';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import ManageEvents from '../Events/ManageEvents';
-
-
-const AdminDashboard=()=>{
+import UserProfileDisplay from "./UserProfileDisplay"
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+const UserDashboard=()=>{
 
     const [activeLink, setActiveLink] = useState('link1');
 
@@ -56,30 +52,11 @@ const AdminDashboard=()=>{
                             backgroundColor: activeLink === 'link1' ? '#D5F5E3' : 'transparent', 
                             '&:hover': {
                               backgroundColor: '#D5F5E3',
-                            },
-                           
+                            }, 
                           }}
                       >
-                      <BarChartIcon/>
-                        <ListItemText primary="Dashboard" />
-                      </ListItemButton>
-                    </List>
-                    <List>
-                      <ListItemButton
-                        onClick={() => handleLinkClick('link2')}
-                        className={activeLink === 'link2' ? 'active' : ''}
-                        sx={{
-                            backgroundColor: activeLink === 'link2' ? '#D5F5E3' : 'transparent', 
-                            '&:hover': {
-                              backgroundColor: '#D5F5E3',
-                            },
-                          }}
-                       
-                      >
-                      <GroupIcon/>
-                        <ListItemText primary="Users" 
-                          
-                        />
+                      <AccountCircleIcon/>
+                        <ListItemText primary="My Profile" />
                       </ListItemButton>
                     </List>
                     <List>
@@ -94,22 +71,7 @@ const AdminDashboard=()=>{
                           }}
                       >
                       <ArticleIcon/>
-                        <ListItemText primary="Heritages" />
-                      </ListItemButton>
-                    </List>
-                    <List>
-                      <ListItemButton
-                        onClick={() => handleLinkClick('link4')}
-                        className={activeLink === 'link4' ? 'active' : ''}
-                        sx={{
-                            backgroundColor: activeLink === 'link4' ? '#D5F5E3' : 'transparent', 
-                            '&:hover': {
-                              backgroundColor: '#D5F5E3',
-                            },
-                          }}
-                      >
-                      <EventNoteIcon/>
-                        <ListItemText primary="Events" />
+                        <ListItemText primary="My Blogs" />
                       </ListItemButton>
                     </List>
                   </Box>
@@ -117,10 +79,8 @@ const AdminDashboard=()=>{
                 </Grid>
                 <Grid item xs={10} sx={{boxShadow:"none"}} elevation={0}>
                   <Item sx={{boxShadow:"none",backgroundColor:"#FAF9F6"}}>
-                  {activeLink === 'link1' && <Dashboard />}
-                  {activeLink === 'link2' && <Users />}
-                  {activeLink === 'link3' && <ManageHeritages />}
-                  {activeLink === 'link4' && <ManageEvents/>}  
+                  {activeLink === 'link1' && <UserProfileDisplay/>}
+                  {/* {activeLink === 'link4' && <UsersChart/>}   */}
                   </Item>
                 </Grid>
               </Grid>
@@ -130,10 +90,6 @@ const AdminDashboard=()=>{
             </div>
     )
   
-
-
-
-
 }
 
-export default AdminDashboard;
+export default UserDashboard;

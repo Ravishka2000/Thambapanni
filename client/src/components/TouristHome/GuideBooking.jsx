@@ -7,8 +7,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import { TextField, Button, FormControlLabel,
   Card,
   CardContent, Container } from '@mui/material';
-import { PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 import { useAuthContext } from "../../hooks/useAuthContext";
+
 
 const GuideBooking = () => {
   const guideId = useParams().id;
@@ -21,6 +21,10 @@ const GuideBooking = () => {
   const [tourLocation, setTourLocation] = useState("");
   const [groupSize, setGroupSize] = useState("");
   const [specialRequirements, setSpecialRequirements] = useState("");
+  const [nameOnCard, setNameOnCard] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
 
   useEffect(() => {
     fetch(`http://localhost:7070/api/auth/${guideId}`)
@@ -34,13 +38,15 @@ const GuideBooking = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       // Submit the form data with the values
       const response = await fetch("http://localhost:7070/api/booking/Add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${user.token}`,
+          'user_id': user._id
         },
         body: JSON.stringify({
           name,
@@ -53,14 +59,15 @@ const GuideBooking = () => {
           guideId
         }),
       });
-
+  
       const data = await response.json();
-
+  
       console.log("Booking added successfully", data);
     } catch (error) {
       console.error("Error adding booking", error);
     }
   };
+
 
   return (
     <section style={{ margin: '32px 0' }}>
@@ -105,7 +112,7 @@ const GuideBooking = () => {
             <Card style={{ backgroundColor: "#F1F6F9"  }} justifyContent="center">
                     <CardContent>
                     <Container maxWidth="sm" style={{marginTop: '20px', marginBottom: '20px'}}>
-                        <form >
+                        <form onSubmit={handleSubmit} >
                             <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D' }}>
                               <center>Book Now</center>
                             </Typography>
@@ -170,7 +177,7 @@ const GuideBooking = () => {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item spacing={2} xs={12}>
                                     <TextField
                                         fullWidth
                                         name="requirements"
@@ -185,8 +192,49 @@ const GuideBooking = () => {
                               <center>You have to pay an advance of 4 USD to book a guide.</center>
                             </Typography>
 
+                            <Grid container spacing={2}>
+                                <Grid item spacing={2} xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Name on card"
+                                        value={nameOnCard}
+                                        onChange={(e) => setNameOnCard(e.target.value)}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Card number"
+                                        value={cardNumber}
+                                        onChange={(e) => setCardNumber(e.target.value)}
+                                    />
+                                </Grid>
+                                <Grid container item spacing={2} xs={12}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="Expiry date"
+                                            value={expiryDate}
+                                            onChange={(e) => setExpiryDate(e.target.value)}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            label="CVV"
+                                            value={cvv}
+                                            onChange={(e) => setCvv(e.target.value)}
+                                        />
+                                    </Grid>
+                                </Grid>
+                           
+                                </Grid>
                               <Grid item xs={12}>
-                                <PayPalScriptProvider 
+                                {/* <PayPalScriptProvider 
                                   options={{
                                     "client-id": "AQI8VgpVImEHGWZ51f74S2WmYm4xHLXP3COG9kdkDwXXuN3UuoYP6sx1AocPTGzYHiVOYQ4YlvbauFiA"
                                   }}
@@ -207,11 +255,13 @@ const GuideBooking = () => {
                                       const details = await actions.order.capture();
                                       const name = details.payer.name.given_name;
                                       alert("Booking completed by " + name);
-                                      handleSubmit();
+                                     
                                     }}
                                   />
-                                </PayPalScriptProvider>
-                                </Grid>                         
+                                </PayPalScriptProvider> */}
+                                </Grid>    
+                                <Button type="submit" variant="contained"
+                            sx={{ color: 'white', backgroundColor: "#063970", borderColor: 'green', width: '100%', padding: 2, margin: 2, fontWeight: "bold" }}>Submit</Button>
                             </Grid>
                         </form>
                         </Container>

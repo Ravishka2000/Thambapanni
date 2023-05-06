@@ -26,9 +26,14 @@ import BlogDashboard from './components/Blogs/BlogDashboard';
 import UserBlogs from './components/Blogs/UserBlogs';
 import CreateBlog from './components/Blogs/CreateBlog';
 import BlogDetails from './components/Blogs/BlogDetails';
+import Profile from './components/Guide/Profile';
+import AddEvent from './components/Events/AddEvent';
+import EditEvents from './components/Events/EditEvents';
+import UserDashboard from './components/UserProfile/UserDashboard';
 
 function App() {
   const { user } = useAuthContext()
+  const isAdmin = user && user.role === 'admin';
 
     return (
         <React.Fragment>
@@ -40,16 +45,19 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} exact></Route>
                     <Route path="/guides" element={<ViewGuides />} exact></Route>
+                    <Route path="/guide-profile" element={<Profile />} exact></Route>
                     <Route path="/heritages" element={<ViewHeritages />} exact></Route>
                     <Route path="/events" element={<ViewEvents />} exact></Route>
+                    <Route path="/create-events" element={<AddEvent />} exact></Route>
+                    <Route path="/edit-event/:id" element={<EditEvents />} exact></Route>
                     <Route path="/about" element={<AboutUs />} exact></Route>
                     <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
-                    <Route path="/signup" element={!user ? <Signup /> :<Navigate to="/login"></Navigate>}/>
-                    <Route path="/login" element={!user ? <Login /> :<Navigate to="/"></Navigate>}/>
-                    <Route path="/reset-password" element={!user ? <ForgetPassword /> :<Navigate to="/"></Navigate>}/>
+                    <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/login"></Navigate>} />
+                    <Route path="/login" element={!user ? <Login /> : <Navigate to="/"></Navigate>} />
+                    <Route path="/reset-password" element={!user ? <ForgetPassword /> : <Navigate to="/"></Navigate>} />
                     <Route path="/api/user/reset-password/:token" element={<ResetPassword />} exact></Route>
-                    <Route path="/api/createHeritages" element={<CreateHeritage />} exact></Route> 
+                    <Route path="/api/createHeritages" element={<CreateHeritage />} exact></Route>
                     <Route path="/api/heritage/:id" element={<DisplayAHeritage />} exact></Route>
                     <Route path="/api/manageHeritages" element={<ManageHeritages />} exact></Route>
                     <Route path="/api/editHeritages/:id" element={<EditHeritage />} exact></Route>
@@ -60,6 +68,7 @@ function App() {
                     <Route path="/my-blog" element={<UserBlogs />} exact></Route>
                     <Route path="/create-blog" element={<CreateBlog />} exact></Route>
                     <Route path="/blog-details/:id" element={<BlogDetails />} exact></Route>
+                    <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
                 </Routes>
             </main>
 
