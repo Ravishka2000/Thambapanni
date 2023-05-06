@@ -11,6 +11,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box"; // Import Box component
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function BlogCard({
@@ -41,6 +42,7 @@ const handleDelete = async () => {
 };
 
   return (
+    
     <Card
       sx={{
         width: "40%",
@@ -64,6 +66,7 @@ const handleDelete = async () => {
         </Box>
       )}
 
+  <Link to={`/a_blog/${id}`} style={{textDecoration:"none",color:"black"}}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -82,6 +85,8 @@ const handleDelete = async () => {
           {description}
         </Typography>
       </CardContent>
+      </Link>
     </Card>
+    
   );
 }
