@@ -49,10 +49,6 @@ const Signup = () => {
             </Grid>
 
         <Grid item xs={6} md={6} sx={{height: 650}}>
-            <Typography sx={{fontWeight:"bold",textAlign:"left",padding:"0.5rem",color:"#566573"}} variant="h6">
-                    THAMBAPANNI
-            </Typography>
-
 
        
             <Box

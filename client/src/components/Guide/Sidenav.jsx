@@ -53,6 +53,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
+    marginTop: "15px",
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 }));
@@ -109,7 +110,7 @@ export default function Sidenav() {
     return (
         <><Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" elevation={4} sx={{ background: "#063970", padding: "6px" }}>
+            <AppBar position="fixed" elevation={4} sx={{ background: "#ffffff", padding: "6px" }}>
                 <Toolbar>
                     <IconButton
                         color="inherit"

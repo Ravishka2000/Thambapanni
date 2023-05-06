@@ -31,6 +31,7 @@ import AddEvent from './components/Events/AddEvent';
 import EditEvents from './components/Events/EditEvents';
 import UserDashboard from './components/UserProfile/UserDashboard';
 import GuideSignup from './pages/GuideSignup';
+import SignupRole from './pages/SignupRole';
 
 function App() {
   const { user } = useAuthContext()
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/about" element={<AboutUs />} exact></Route>
                     <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
+                    <Route path="/rolesignup" element={<SignupRole/>} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/login"></Navigate>} />
                     <Route path="/guide-signup" element={!user ? <GuideSignup /> : <Navigate to="/login"></Navigate>} />
                     <Route path="/login" element={!user ? <Login /> : <Navigate to="/"></Navigate>} />
@@ -71,6 +73,7 @@ function App() {
                     <Route path="/create-blog" element={<CreateBlog />} exact></Route>
                     <Route path="/blog-details/:id" element={<BlogDetails />} exact></Route>
                     <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
+                    
                 </Routes>
             </main>
 

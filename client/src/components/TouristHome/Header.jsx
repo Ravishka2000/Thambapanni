@@ -103,7 +103,7 @@ const Header = () => {
                             ) : (
                                 <>
                                     <Typography component={Link} to="/login" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Login</Typography>
-                                    <Typography component={Link} to="/signup" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Register</Typography>
+                                    <Typography component={Link} to="/rolesignup" sx={{ textDecoration: 'none', fontSize: '20px', fontWeight: '500', color: 'black', mt: '20px' }}>Register</Typography>
                                 </>
                             )}
                         </Box>
