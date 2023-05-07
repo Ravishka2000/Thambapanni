@@ -8,7 +8,7 @@ const createPost = asyncHandler(async (req, res) => {
     try {
         const { title, description, image, user, location } = req.body;
         //validation
-        if (!title || !description || !image || !location) {
+        if (!title || !description || !image ) {
             return res.status(400).send({
                 success: false,
                 message: "Please Provide ALl Fields",

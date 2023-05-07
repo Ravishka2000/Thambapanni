@@ -20,7 +20,6 @@ const postSchema = new Schema({
     },
     location: {
         type: String,
-        required: false
     },
     ratings: [{
         user: {

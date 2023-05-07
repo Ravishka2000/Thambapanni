@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Editor from "./Editor";
 import axios from "axios";
 
 const CreateBlog = () => {
@@ -10,7 +9,6 @@ const CreateBlog = () => {
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
-    location: "",
     image: "",
   });
 
@@ -24,17 +22,16 @@ const CreateBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const { data } = await axios.post("http://localhost:7070/api/posts/create-post", {
-          title: inputs.title,
-          description: inputs.description,
-          location: inputs.location,
-          image: inputs.image,
-          user: user._id
-        });
-        if (data?.success) {
-          alert("Blog Created");
-          navigate("/my-blog");
-        }
+      const { data } = await axios.post("http://localhost:7070/api/posts/create-post", {
+        title: inputs.title,
+        description: inputs.description,
+        image: inputs.image,
+        user: user._id
+      });
+      if (data?.success) {
+        alert("Blog Created");
+        navigate("/my-blog");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -78,24 +75,6 @@ const CreateBlog = () => {
             required
           />
           <label htmlFor="description" id="description-label">Description</label>
-          <InputLabel
-            sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
-          >
-            Location
-          </InputLabel>
-          <TextField
-            name="location"
-            value={inputs.location}
-            onChange={handleChange}
-            margin="normal"
-            variant="outlined"
-            required
-          />
-          <InputLabel
-            sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
-          >
-            Description
-          </InputLabel>
           <TextField
             id="description"
             name="description"
