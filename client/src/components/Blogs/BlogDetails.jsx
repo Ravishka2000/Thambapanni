@@ -84,7 +84,7 @@ const BlogDetails = () => {
                 padding={3}
                 color="gray"
               >
-                Create A Blog
+                Update Blog
               </Typography>
               <InputLabel
                 sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
@@ -110,6 +110,9 @@ const BlogDetails = () => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                multiline
+                rows={6}
+                rowsMax={12}
                 required
               />
               <InputLabel
