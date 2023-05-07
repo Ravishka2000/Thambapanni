@@ -72,9 +72,11 @@ const GuideBooking = () => {
   return (
     <section style={{ margin: '32px 0' }}>
       <Grid container spacing={2} marginTop={10}>
+        <Typography>Booking Page</Typography>
         {guide && (
           <>
             <Grid item xs={12} sm={6}>
+              <br/><br/>
               <img
                 src={guide.photo}
                 alt={guide.firstname}
@@ -85,6 +87,7 @@ const GuideBooking = () => {
                 margin: '0 auto',
                 borderRadius: '50%' }}
               />
+              <br/><br/>
               <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D' }}>
                 <center>{guide.firstName} {guide.lastName}</center>
               </Typography>

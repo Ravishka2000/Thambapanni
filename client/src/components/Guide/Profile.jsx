@@ -53,6 +53,7 @@ const Profile = () => {
                 borderColor: '#2f2f2f',
                 borderRadius: '50%' }}
               />
+              <br/><br/>
               <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D' }}>
                 <center>{guide.firstName} {guide.lastName}</center>
               </Typography>
