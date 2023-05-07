@@ -53,6 +53,7 @@ const Profile = () => {
                 borderColor: '#2f2f2f',
                 borderRadius: '50%' }}
               />
+              <br/><br/>
               <Typography variant="h5" style={{ marginBottom: '16px', fontWeight: 'bold', color: '#19376D' }}>
                 <center>{guide.firstName} {guide.lastName}</center>
               </Typography>
@@ -63,7 +64,7 @@ const Profile = () => {
             </Grid>
             <Grid item xs={12} sm={6} style={{ backgroundColor: '#ffff' }}>
             
-            <Card style={{ backgroundColor: "#F1F6F9"  }} justifyContent="center">
+            <Card style={{ backgroundColor: "#3aff0031"  }} justifyContent="center">
                     <CardContent>
                     <Container maxWidth="sm" style={{marginTop: '20px', marginBottom: '20px'}}>
                         

@@ -15,9 +15,62 @@ const postSchema = new Schema({
         required: true
     },
     user: {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
     },
+    location: {
+        type: String,
+        required: false
+    },
+    ratings: [{
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 5
+        }
+    }],
+    comments: [{
+        id: {
+            type: String,
+            unique: true,
+        },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        text: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        }
+    }],
+    likes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
+    disLikes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
+    isLiked: {
+        type: Boolean,
+        default: false
+    },
+    isDisliked: {
+        type: Boolean,
+        default: false
+    }
 
 }, { timestamps: true });
 

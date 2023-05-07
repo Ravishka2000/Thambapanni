@@ -13,9 +13,12 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import GroupIcon from '@mui/icons-material/Group';
 import ArticleIcon from '@mui/icons-material/Article';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import UserProfileDisplay from "./UserProfileDisplay"
+import UserProfileDisplay from "./UserProfileDisplay";
+import Bookings from "./Bookings";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import UserBlogs from '../Blogs/UserBlogs';
+
 const UserDashboard=()=>{
 
     const [activeLink, setActiveLink] = useState('link1');
@@ -62,10 +65,10 @@ const UserDashboard=()=>{
                     </List>
                     <List>
                       <ListItemButton
-                        onClick={() => handleLinkClick('link3')}
+                        onClick={() => handleLinkClick('link2')}
                         className={activeLink === 'link3' ? 'active' : ''}
                         sx={{
-                            backgroundColor: activeLink === 'link3' ? '#D5F5E3' : 'transparent', 
+                            backgroundColor: activeLink === 'link2' ? '#D5F5E3' : 'transparent', 
                             '&:hover': {
                               backgroundColor: '#D5F5E3',
                             },
@@ -75,12 +78,29 @@ const UserDashboard=()=>{
                         <ListItemText primary="My Blogs" />
                       </ListItemButton>
                     </List>
+                    <List>
+                      <ListItemButton
+                        onClick={() => handleLinkClick('link3')}
+                        className={activeLink === 'link3' ? 'active' : ''}
+                        sx={{
+                            backgroundColor: activeLink === 'link3' ? '#D5F5E3' : 'transparent', 
+                            '&:hover': {
+                              backgroundColor: '#D5F5E3',
+                            },
+                          }}
+                      >
+                      <BookmarkBorderIcon />
+                        <ListItemText primary="Bookings" />
+                      </ListItemButton>
+                    </List>
                   </Box>
                   </Item>
                 </Grid>
                 <Grid item xs={10} sx={{boxShadow:"none"}} elevation={0}>
                   <Item sx={{boxShadow:"none",backgroundColor:"#FAF9F6"}}>
                   {activeLink === 'link1' && <UserProfileDisplay/>}
+                  {/* {activeLink === 'link4' && <UsersChart/>}   */}
+                  {activeLink === 'link3' && <Bookings/>}
                   {activeLink === 'link3' && <UserBlogs/>}
                   </Item>
                 </Grid>

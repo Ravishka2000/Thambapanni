@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { Grid, TextField, Button, Alert, Container, Typography } from "@mui/material";
 import Box from '@mui/system/Box';
 

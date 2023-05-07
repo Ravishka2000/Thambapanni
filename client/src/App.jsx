@@ -30,6 +30,8 @@ import Profile from './components/Guide/Profile';
 import AddEvent from './components/Events/AddEvent';
 import EditEvents from './components/Events/EditEvents';
 import UserDashboard from './components/UserProfile/UserDashboard';
+import GuideSignup from './pages/GuideSignup';
+import SignupRole from './pages/SignupRole';
 import DisplayABlog from './components/Blogs/DisplayABlog';
 
 function App() {
@@ -54,7 +56,9 @@ function App() {
                     <Route path="/about" element={<AboutUs />} exact></Route>
                     <Route path="/contact" element={<ContactUs />} exact></Route>
                     <Route path="/guides/:id" element={<GuideBooking />} exact></Route>
+                    <Route path="/rolesignup" element={<SignupRole/>} exact></Route>
                     <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/login"></Navigate>} />
+                    <Route path="/guide-signup" element={!user ? <GuideSignup /> : <Navigate to="/login"></Navigate>} />
                     <Route path="/login" element={!user ? <Login /> : <Navigate to="/"></Navigate>} />
                     <Route path="/reset-password" element={!user ? <ForgetPassword /> : <Navigate to="/"></Navigate>} />
                     <Route path="/api/user/reset-password/:token" element={<ResetPassword />} exact></Route>
@@ -71,6 +75,7 @@ function App() {
                     <Route path="/blog-details/:id" element={<BlogDetails />} exact></Route>
                     <Route path="/a_blog/:id" element={<DisplayABlog />} exact></Route>
                     <Route path="/user-dashboard" element={<UserDashboard/>} exact></Route>
+                    
                 </Routes>
             </main>
 

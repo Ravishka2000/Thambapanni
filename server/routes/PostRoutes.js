@@ -22,5 +22,12 @@ router.delete("/delete-post/:id", PostControllers.deletePost);
 //GET || user blog
 router.get("/user-post/:id", PostControllers.getUserPost);
 
+router.post('/rate', AuthMiddlewares.authMiddleware, PostControllers.addRating);
+router.post('/comment', AuthMiddlewares.authMiddleware, PostControllers.addComment);
+router.patch('/edit-comment', AuthMiddlewares.authMiddleware, PostControllers.editComment);
+router.patch('/like', AuthMiddlewares.authMiddleware, PostControllers.likePost);
+router.patch('/dislike', AuthMiddlewares.authMiddleware, PostControllers.dislikePost);
+router.delete('/delete-comment', AuthMiddlewares.authMiddleware, PostControllers.deleteComment);
+
 
 export default router;
