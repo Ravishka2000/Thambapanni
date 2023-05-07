@@ -72,7 +72,6 @@ const GuideBooking = () => {
   return (
     <section style={{ margin: '32px 0' }}>
       <Grid container spacing={2} marginTop={10}>
-        <Typography>Booking Page</Typography>
         {guide && (
           <>
             <Grid item xs={12} sm={6}>
