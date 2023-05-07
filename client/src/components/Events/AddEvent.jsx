@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Grid, TextField, Button, Alert, Container, Typography, IconButton } from "@mui/material"
+import { Grid, TextField, Button, Alert, Container, Typography } from "@mui/material"
 import Box from '@mui/system/Box';
 import axios from "axios"
-
+import React from 'react';
 
 const CreateHeritage = () => {
 
