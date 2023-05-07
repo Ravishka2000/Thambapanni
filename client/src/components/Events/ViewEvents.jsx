@@ -54,7 +54,7 @@ const ViewEvents = () => {
                                     <Typography align='center' fontFamily={'serif'} fontSize={22}>
                                         <p dangerouslySetInnerHTML={{ __html: event.description }} />
                                     </Typography>
-                                    <Grid container mt={3} display={'flex'} justifyContent={'space-between'} lg={12}>
+                                    <Grid item container mt={3} display={'flex'} justifyContent={'space-between'} lg={12}>
                                         <Grid item xs={5.8} border={2} p={2} boxShadow={2}>
                                             <Typography color={'error'} align='center'>Date</Typography>
                                             <Typography align='center'>{event.date.slice(0, 10)}</Typography>
@@ -80,7 +80,7 @@ const ViewEvents = () => {
                                             backgroundColor: 'rgba(0, 0, 0, 0.6)', // Semi-transparent background
                                         }}
                                     >
-                                        <Button variant="contained" color="primary" onClick={handleRegisterClick}>Register</Button>
+                                        <Button id="register-button" variant="contained" color="primary" onClick={handleRegisterClick}>Register</Button>
                                     </Box>
                                 )}
                             </Card>
