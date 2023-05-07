@@ -12,6 +12,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert"
+import React from "react";
 
 const GuideSignup = () => {
     const [email, setEmail] = useState('');
