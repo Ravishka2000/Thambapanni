@@ -12,6 +12,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert"
+import React from "react";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -115,16 +116,16 @@ const Login = () => {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12}>
-                        <p className="text" style={{ color: "#239B56",textAlign:"right",width:"45ch" }}><Typography><Link to="/reset-password" style={{ textDecoration:"none", color: "#239B56",fontSize:"15px" }}>Forgot Passowrd?</Link></Typography></p>
+                        <Typography textAlign={"right"}><Link to="/reset-password" style={{ textDecoration:"none", color: "#239B56",fontSize:"15px",paddingRight:"20px" }}>Forgot Passowrd?</Link></Typography>
                         </Grid>
                         <Grid item xs={12}>
-                        <Button variant="contained" disabled={isLoading} type="submit"
-                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
+                        <Button variant="contained" disabled={isLoading} type="submit" 
+                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '45ch', padding: 1, margin: 1, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
                         >Sign In</Button>
 
-                        <Grid item sx={12}
+                        <Grid item xs={12}
                         textAlign={"center"}>
-                        <Typography><p className="text" style={{ color: "#239B56" }}>Don't have an account? <span><Link to="/signup" style={{ textDecoration:"none", color: "black",fontWeight:"bold" }}>Sign Up!</Link></span></p></Typography>
+                        <Typography style={{ color: "#239B56",marginBottom:2 }}>Don't have an account? <span><Link to="/signup" style={{ textDecoration:"none", color: "black",fontWeight:"bold" }}>Sign Up!</Link></span></Typography>
                         </Grid>
                     </Grid>
                     </div>

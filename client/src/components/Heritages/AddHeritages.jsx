@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { Grid, TextField, Button, Alert, Container, Typography, IconButton } from "@mui/material"
 import Box from '@mui/system/Box';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import axios from "axios"
+
+import React from 'react';
 
 const CreateHeritage = () => {
 
@@ -110,6 +111,7 @@ const CreateHeritage = () => {
                                                     multiline
                                                     helperText="Enter the title of your article"
                                                     style={{ margin: "0" }}
+                                                    data-testid="title-input"
                                                 />
                                             </Grid>
                                         </Box>
@@ -184,7 +186,7 @@ const CreateHeritage = () => {
 
                                 </Grid>
                                 <div style={{ paddingTop: "20px" }}>
-                                    {error && <Alert variant="outlined" severity="error" style={{ width: "250px", margin: "auto" }}>{error}</Alert>}
+                                    {error && <Alert  variant="outlined" severity="error" style={{ width: "250px", margin: "auto" }}>{error}</Alert>}
                                     {success && <Alert variant="outlined" severity="success" style={{ width: "250px", margin: "auto" }}>{success}</Alert>}
                                 </div>
                             </Grid>

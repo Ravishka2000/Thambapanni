@@ -12,6 +12,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert"
+import React from "react";
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -68,7 +69,6 @@ const Signup = () => {
                     alignItems="center"
                     justifyContent="center"
                     justify="space-around"
-                    placeItems='center'
                     >
                     <div style={{padding:"20px"}}>
                     <Grid item xs={12}
@@ -157,19 +157,21 @@ const Signup = () => {
                                             </IconButton>
                                         </InputAdornment>
                                     }
-                                    label="Password" />
+                                    label="Password"
+                                  
+                                     />
                             </FormControl>
                         </Grid>
 
                         
                         <Grid item xs={12}>
                         <Button variant="contained" disabled={isLoading} type="submit"
-                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '45ch', padding: 2, margin: 2, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
+                            sx={{ color: 'white', backgroundColor: "#239B56", borderColor: 'green', width: '45ch', padding: 1, margin: 1, fontWeight: "bold",'&:hover': {background: '#239B56'} }}
                         >Sign Up</Button>
                         </Grid>
 
                         <Grid item xs={12}>
-                        <Typography sx={{textAlign:"center"}}><p className="text" style={{ color: "#239B56" }}>Already have an account? <span><Link to="/login" style={{ textDecoration:"none", color: "black",fontWeight:"bold" }}>Sign In!</Link></span></p></Typography>
+                        <Typography sx={{textAlign:"center"}} className="text" style={{ color: "#239B56" }}>Already have an account? <span><Link to="/login" style={{ textDecoration:"none", color: "black",fontWeight:"bold" }}>Sign In!</Link></span></Typography>
                         </Grid>
                     </div>
 
