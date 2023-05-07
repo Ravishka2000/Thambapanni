@@ -110,6 +110,9 @@ const BlogDetails = () => {
                 onChange={handleChange}
                 margin="normal"
                 variant="outlined"
+                multiline
+                rows={6}
+                rowsMax={12}
                 required
               />
               <InputLabel

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Box, InputLabel, Typography, TextField, Button } from "@mui/material";
+import { Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Editor from "./Editor";
 import axios from "axios";
 
 const CreateBlog = () => {
@@ -22,19 +23,19 @@ const CreateBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const { data } = await axios.post("http://localhost:7070/api/posts/create-post", {
-          title: inputs.title,
-          description: inputs.description,
-          image: inputs.image,
-          user: user._id
-        });
-        if (data?.success) {
-          alert("Blog Created");
-          navigate("/my-blog");
-        }
-      } catch (error) {
-        console.log(error);
+      const { data } = await axios.post("http://localhost:7070/api/posts/create-post", {
+        title: inputs.title,
+        description: inputs.description,
+        image: inputs.image,
+        user: user._id
+      });
+      if (data?.success) {
+        alert("Blog Created");
+        navigate("/my-blog");
       }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -42,7 +43,7 @@ const CreateBlog = () => {
       <br />
       <br />
       <br />
-      <form onSubmit={handleSubmit}>
+      <form className="create-blog" onSubmit={handleSubmit}>
         <Box
           width={"50%"}
           border={3}
@@ -63,39 +64,36 @@ const CreateBlog = () => {
           >
             Create A Blog
           </Typography>
-          <InputLabel
-            sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
-          >
-            Title
-          </InputLabel>
+          <label htmlFor="title" id="title-label">Title</label>
           <TextField
+            id="title"
             name="title"
+            aria-labelledby="title-label"
             value={inputs.title}
             onChange={handleChange}
             margin="normal"
             variant="outlined"
             required
           />
-          <InputLabel
-            sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
-          >
-            Description
-          </InputLabel>
+          <label htmlFor="description" id="description-label">Description</label>
           <TextField
+            id="description"
             name="description"
+            aria-labelledby="description-label"
             value={inputs.description}
             onChange={handleChange}
             margin="normal"
             variant="outlined"
+            multiline
+            rows={6}
+            rowsMax={12}
             required
           />
-          <InputLabel
-            sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
-          >
-            Image URL
-          </InputLabel>
+          <label htmlFor="image" id="image-label">Image URL</label>
           <TextField
+            id="image"
             name="image"
+            aria-labelledby="image-label"
             value={inputs.image}
             onChange={handleChange}
             margin="normal"
