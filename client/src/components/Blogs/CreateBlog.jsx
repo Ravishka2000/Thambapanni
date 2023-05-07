@@ -9,6 +9,7 @@ const CreateBlog = () => {
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
+    location: "",
     image: "",
   });
 
@@ -25,6 +26,7 @@ const CreateBlog = () => {
         const { data } = await axios.post("http://localhost:7070/api/posts/create-post", {
           title: inputs.title,
           description: inputs.description,
+          location: inputs.location,
           image: inputs.image,
           user: user._id
         });
@@ -71,6 +73,19 @@ const CreateBlog = () => {
           <TextField
             name="title"
             value={inputs.title}
+            onChange={handleChange}
+            margin="normal"
+            variant="outlined"
+            required
+          />
+          <InputLabel
+            sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
+          >
+            Location
+          </InputLabel>
+          <TextField
+            name="location"
+            value={inputs.location}
             onChange={handleChange}
             margin="normal"
             variant="outlined"
