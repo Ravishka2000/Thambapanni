@@ -1,6 +1,6 @@
 import express from "express";
 import UserControllers from "../controllers/UserController.js";
-import AuthMiddlewares from "../middlewares/authMiddleware.js";
+import AuthMiddlewares from "../middlewares/AuthMiddleware.js";
 import multer from "multer";
 import User from "../models/UserModel.js"
 
